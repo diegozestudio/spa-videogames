@@ -133,7 +133,19 @@ router.get("/videogame/:id", async (req, res) => {
   const findInApi = gamesApi.find((game) => game.id === Number(id));
   const findInDB = gamesDB.find((game) => String(game.id) === id);
   if (findInDB) {
-    res.send(findInDB);
+    // res.send(findInDB);
+    const { name, genres, image, description, released, rating, platforms } =
+      findInDB;
+    const game = {
+      name,
+      genres: genres.map((e) => e.name),
+      image,
+      description,
+      released,
+      rating,
+      platforms,
+    };
+    res.send(game);
   } else if (findInApi) {
     const gameFind = await axios.get(
       `https://api.rawg.io/api/games/${id}?key=${API_KEY}`
