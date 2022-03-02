@@ -1,7 +1,8 @@
-import { GET_VIDEOGAMES } from "../actions";
+import { GET_VIDEOGAMES, SET_LOADING } from "../actions";
 
 const initialState = {
   videogames: [],
+  loading: true,
 };
 
 function rootReducer(state = initialState, action) {
@@ -10,6 +11,12 @@ function rootReducer(state = initialState, action) {
       return {
         ...state,
         videogames: action.payload,
+        loading: false,
+      };
+    case SET_LOADING:
+      return {
+        ...state,
+        loading: action.payload,
       };
     default:
       return state;

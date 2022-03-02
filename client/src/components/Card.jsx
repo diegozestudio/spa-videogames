@@ -1,16 +1,16 @@
 import React from "react";
 
-export default function Card({ image, name, genres }) {
+export default function Card({ image, name, genres, id }) {
   return (
     <div>
       <h3>{name}</h3>
       <img src={image} alt="videogame" width="200px" height="250px" />
-      <br />
-      {genres &&
-        genres.map((g) => {
-          return <span>{g} </span>;
-        })}
-      {/* {genres.map((g) => console.log(g))} */}
+      <ul>
+        {genres &&
+          genres.map((g) => {
+            return <li key={g + id}>{g} </li>;
+          })}
+      </ul>
     </div>
   );
 }
