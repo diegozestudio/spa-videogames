@@ -37,7 +37,7 @@ const getApiInfo = async () => {
 };
 
 const getDbInfo = async () => {
-  return await Videogame.findAll({
+  const dbInfo = await Videogame.findAll({
     include: {
       model: Genre,
       attributes: ["name"],
@@ -46,14 +46,40 @@ const getDbInfo = async () => {
       },
     },
   });
+  const dbMaped = dbInfo.map((v) => {
+    const {
+      id,
+      name,
+      genres,
+      image,
+      description,
+      released,
+      rating,
+      platforms,
+      createdInDB,
+    } = v;
+    const game = {
+      id,
+      name,
+      genres: genres.map((e) => e.name),
+      image,
+      description,
+      released,
+      rating,
+      platforms,
+      createdInDB,
+    };
+    return game;
+  });
+  return dbMaped;
 };
 
 const getAllGames = async () => {
   try {
     const apiInfo = await getApiInfo();
     const dbInfo = await getDbInfo();
-    // const infoTotal = apiInfo.concat(dbInfo);
-    const infoTotal = [...apiInfo, ...dbInfo];
+    // const infoTotal = dbInfo.concat(apiInfo);
+    const infoTotal = [...dbInfo, ...apiInfo];
     // console.log(infoTotal);
     // console.log(infoTotal.length);
     return infoTotal;
@@ -133,28 +159,7 @@ router.get("/videogame/:id", async (req, res) => {
   const findInApi = gamesApi.find((game) => game.id === Number(id));
   const findInDB = gamesDB.find((game) => String(game.id) === id);
   if (findInDB) {
-    // res.send(findInDB);
-    const {
-      id,
-      name,
-      genres,
-      image,
-      description,
-      released,
-      rating,
-      platforms,
-    } = findInDB;
-    const game = {
-      id,
-      name,
-      genres: genres.map((e) => e.name),
-      image,
-      description,
-      released,
-      rating,
-      platforms,
-    };
-    res.send(game);
+    res.send(findInDB);
   } else if (findInApi) {
     const gameFind = await axios.get(
       `https://api.rawg.io/api/games/${id}?key=${API_KEY}`
