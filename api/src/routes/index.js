@@ -134,9 +134,18 @@ router.get("/videogame/:id", async (req, res) => {
   const findInDB = gamesDB.find((game) => String(game.id) === id);
   if (findInDB) {
     // res.send(findInDB);
-    const { name, genres, image, description, released, rating, platforms } =
-      findInDB;
+    const {
+      id,
+      name,
+      genres,
+      image,
+      description,
+      released,
+      rating,
+      platforms,
+    } = findInDB;
     const game = {
+      id,
       name,
       genres: genres.map((e) => e.name),
       image,
@@ -160,6 +169,7 @@ router.get("/videogame/:id", async (req, res) => {
       platforms,
     } = gameFind.data;
     const game = {
+      id,
       name,
       genres: genres.map((e) => e.name),
       image: background_image,
