@@ -91,7 +91,7 @@ export default function Paginado() {
   }
 
   const handleLoadMore = () => {
-    if (itemsPerPage < allVideogames.length) {
+    if (itemsPerPage < 50) {
       setitemsPerPage(itemsPerPage + 5);
     }
   };
@@ -105,6 +105,7 @@ export default function Paginado() {
   return (
     <>
       <h2>Componente Paginado</h2>
+      {renderData(currentItems)}
       <ul className={styles.pageNumbers}>
         <li>
           <button
@@ -132,7 +133,6 @@ export default function Paginado() {
       <button onClick={handleLoadMore} className="loadmore">
         Load More
       </button>
-      {renderData(currentItems)}
     </>
   );
 }
