@@ -11,7 +11,7 @@ const renderData = (data) => {
     return (
       <div key={v.id}>
         <Card name={v.name} image={v.image} genres={v.genres} id={v.id} />
-        <Link to={`/videogames/${v.id}`}>Ver más</Link>
+        <Link to={`/videogame/${v.id}`}>Ver más</Link>
       </div>
     );
   });

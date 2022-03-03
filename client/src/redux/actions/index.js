@@ -9,6 +9,7 @@ export const ORDER_BY_NAME = "ORDER_BY_NAME";
 export const SET_CURRENT_PAGE = "SET_CURRENT_PAGE";
 export const ORDER_BY_RATING = "ORDER_BY_RATING";
 export const GET_NAME_VG = "GET_NAME_VG";
+export const GET_DETAIL = "GET_DETAIL";
 
 export function getVideogames() {
   return async function (dispatch) {
@@ -50,6 +51,20 @@ export function getNameVideogame(payload) {
       });
     } catch (e) {
       alert("Videojuego no encontrado");
+    }
+  };
+}
+
+export function getDetail(id) {
+  return async function (dispatch) {
+    try {
+      const json = await axios("http://localhost:3001/videogame/" + id);
+      return dispatch({
+        type: GET_DETAIL,
+        payload: json.data,
+      });
+    } catch (error) {
+      console.log("ERRROR", error);
     }
   };
 }

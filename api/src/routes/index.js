@@ -111,7 +111,10 @@ router.get("/videogame/:id", async (req, res) => {
       name,
       genres: genres.map((e) => e.name),
       image: background_image,
-      description,
+      description: description
+        .replaceAll("<p>", "")
+        .replaceAll("</p>", "")
+        .replaceAll("<br />", ""),
       released,
       rating,
       platforms: platforms.map((e) => e.platform.name),

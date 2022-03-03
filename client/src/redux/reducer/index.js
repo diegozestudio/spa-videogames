@@ -9,12 +9,14 @@ import {
   SET_CURRENT_PAGE,
   ORDER_BY_RATING,
   GET_NAME_VG,
+  GET_DETAIL,
 } from "../actions";
 
 const initialState = {
   videogames: [],
   allVideogames: [],
   genres: [],
+  detail: {},
   currentPage: 1,
   loading: true,
 };
@@ -132,6 +134,12 @@ function rootReducer(state = initialState, action) {
       return {
         ...state,
         videogames: action.payload,
+        loading: false,
+      };
+    case GET_DETAIL:
+      return {
+        ...state,
+        detail: action.payload,
         loading: false,
       };
     case SET_CURRENT_PAGE:
