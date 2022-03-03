@@ -17,9 +17,9 @@ const renderData = (data) => {
   });
 };
 
-export default function Paginado() {
+export default function Paginado({ allVideogames }) {
   const dispatch = useDispatch();
-  const allVideogames = useSelector((state) => state.videogames);
+  // const allVideogames = useSelector((state) => state.videogames);
 
   const [currentPage, setcurrentPage] = useState(1);
   const [itemsPerPage, setitemsPerPage] = useState(15);
@@ -128,10 +128,10 @@ export default function Paginado() {
         </li>
       </ul>
       <button onClick={handleLoadLess} className="loadmore">
-        Load Less
+        Mostrar menos
       </button>
       <button onClick={handleLoadMore} className="loadmore">
-        Load More
+        Mostrar más
       </button>
     </>
   );
