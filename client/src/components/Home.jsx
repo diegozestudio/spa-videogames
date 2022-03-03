@@ -15,6 +15,7 @@ import {
 } from "../redux/actions";
 import load from "../assets/loading.gif";
 import Pagination from "./Pagination";
+import SearchBar from "./SearchBar";
 
 export default function Home() {
   const dispatch = useDispatch();
@@ -25,7 +26,7 @@ export default function Home() {
   useEffect(() => {
     dispatch(getVideogames());
     dispatch(getGenres());
-  }, [dispatch]);
+  }, []);
 
   const handleReload = (e) => {
     e.preventDefault();
@@ -81,6 +82,7 @@ export default function Home() {
   return (
     <div>
       <Link to="/videogame">Crear Nuevo Videogame</Link>
+      <SearchBar />
       <h1>Componente Home</h1>
       <button onClick={handleReload}>Volver a cargar personajes</button>
       <br />

@@ -8,6 +8,7 @@ import {
   ORDER_BY_NAME,
   SET_CURRENT_PAGE,
   ORDER_BY_RATING,
+  GET_NAME_VG,
 } from "../actions";
 
 const initialState = {
@@ -127,6 +128,12 @@ function rootReducer(state = initialState, action) {
           loading: false,
         };
       }
+    case GET_NAME_VG:
+      return {
+        ...state,
+        videogames: action.payload,
+        loading: false,
+      };
     case SET_CURRENT_PAGE:
       return {
         ...state,
