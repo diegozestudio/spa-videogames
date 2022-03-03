@@ -17,7 +17,8 @@ export default function Home() {
   const dispatch = useDispatch();
   const loading = useSelector((state) => state.loading);
   const genres = useSelector((state) => state.genres);
-  let allVideogames = useSelector((state) => state.videogames);
+  let videogames = useSelector((state) => state.videogames);
+  let allVideogames = useSelector((state) => state.allVideogames);
 
   useEffect(() => {
     dispatch(getVideogames());
@@ -114,7 +115,7 @@ export default function Home() {
           <img src={load} alt="" />
         </>
       ) : (
-        <Pagination allVideogames={allVideogames} />
+        <Pagination allVideogames={videogames} />
       )}
       <br />
       <br />
