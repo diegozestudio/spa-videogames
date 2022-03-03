@@ -71,10 +71,9 @@ function rootReducer(state = initialState, action) {
           }
           return 0;
         });
-        console.log(gamesOrdered);
         return {
           ...state,
-          videogames: gamesOrdered,
+          videogames: gamesOrdered.concat([]),
           loading: false,
         };
       }
@@ -89,10 +88,9 @@ function rootReducer(state = initialState, action) {
           }
           return 0;
         });
-        console.log(gamesOrdered);
         return {
           ...state,
-          videogames: gamesOrdered,
+          videogames: gamesOrdered.concat([]),
           loading: false,
         };
       }
@@ -107,10 +105,9 @@ function rootReducer(state = initialState, action) {
           }
           return 0;
         });
-        console.log(gamesOrdered);
         return {
           ...state,
-          videogames: gamesOrdered,
+          videogames: gamesOrdered.concat([]),
           loading: false,
         };
       }
@@ -124,10 +121,9 @@ function rootReducer(state = initialState, action) {
           }
           return 0;
         });
-        console.log(gamesOrdered);
         return {
           ...state,
-          videogames: gamesOrdered,
+          videogames: gamesOrdered.concat([]),
           loading: false,
         };
       }
