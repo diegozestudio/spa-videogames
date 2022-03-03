@@ -58,10 +58,6 @@ export default function Paginado({ allVideogames }) {
     }
   });
 
-  useEffect(() => {
-    dispatch(getVideogames());
-  }, [dispatch]);
-
   const handleNextbtn = () => {
     setcurrentPage(currentPage + 1);
 

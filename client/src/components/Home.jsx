@@ -3,8 +3,10 @@ import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import {
+  filterByGenre,
   getApiVideogames,
   getDBVideogames,
+  getGenres,
   getVideogames,
   setLoading,
 } from "../redux/actions";
@@ -14,11 +16,13 @@ import Pagination from "./Pagination";
 export default function Home() {
   const dispatch = useDispatch();
   const loading = useSelector((state) => state.loading);
+  const genres = useSelector((state) => state.genres);
   let allVideogames = useSelector((state) => state.videogames);
 
   useEffect(() => {
     dispatch(getVideogames());
-  }, []);
+    dispatch(getGenres());
+  }, [dispatch]);
 
   const handleReload = (e) => {
     e.preventDefault();
@@ -27,7 +31,6 @@ export default function Home() {
   };
 
   //ordenar Alfabeticamente, Rating
-  //filtrar Todos, Creados
   //filtrar Generos
 
   //extras
@@ -42,15 +45,27 @@ export default function Home() {
 
   const handleFilterCreated = (e) => {
     if (e.target.value === "all") {
+      dispatch(setLoading(true));
       dispatch(getVideogames());
     }
     if (e.target.value === "api") {
+      dispatch(setLoading(true));
       dispatch(getApiVideogames());
     }
     if (e.target.value === "db") {
+      dispatch(setLoading(true));
       dispatch(getDBVideogames());
     }
   };
+
+  // console.log(gamesFiltered);
+  const handleGenres = (e) => {
+    const gamesFiltered = allVideogames.filter((g) =>
+      g.genres.includes(e.target.value)
+    );
+    dispatch(filterByGenre(gamesFiltered));
+  };
+  // console.log(allVideogames[0].genres);
 
   return (
     <div>
@@ -69,10 +84,16 @@ export default function Home() {
         <option value="menor-rating">Menor Rating</option>
       </select>
       <label>Géneros: </label>
-      <select>
-        {/* <select onChange={handleGenres}> */}
+      {/* <select> */}
+      <select onChange={handleGenres}>
         <option>Selecciona</option>
-        <option value="genres">Map de los generos</option>
+        {genres.map((g) => {
+          return (
+            <option value={g.name} key={g.name}>
+              {g.name}
+            </option>
+          );
+        })}
       </select>
       <label>Plataformas: </label>
       <select>
@@ -81,8 +102,8 @@ export default function Home() {
         <option value="genres">Map de las plataformas</option>
       </select>
       <label>Filtrar: </label>
-      {/* <select> */}
       <select onChange={handleFilterCreated}>
+        <option>Selecciona</option>
         <option value="all">Todos</option>
         <option value="db">Creados</option>
         <option value="api">Existentes</option>
