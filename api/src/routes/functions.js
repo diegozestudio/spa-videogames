@@ -17,6 +17,7 @@ const getApiInfo = async () => {
           name: e.name,
           image: e.background_image,
           genres: e.genres.map((g) => g.name),
+          rating: e.rating,
         };
       });
       allGames = [...allGames, ...apiInfo];

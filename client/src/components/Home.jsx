@@ -9,6 +9,8 @@ import {
   getGenres,
   getVideogames,
   orderByName,
+  orderByRating,
+  setCurrentPage,
   setLoading,
 } from "../redux/actions";
 import load from "../assets/loading.gif";
@@ -23,7 +25,7 @@ export default function Home() {
   useEffect(() => {
     dispatch(getVideogames());
     dispatch(getGenres());
-  }, []);
+  }, [dispatch]);
 
   const handleReload = (e) => {
     e.preventDefault();
@@ -64,7 +66,16 @@ export default function Home() {
   };
 
   function handleSort(e) {
-    dispatch(orderByName(e.target.value));
+    if (e.target.value === "a-z" || e.target.value === "z-a") {
+      dispatch(orderByName(e.target.value));
+    }
+    if (
+      e.target.value === "mayor-rating" ||
+      e.target.value === "menor-rating"
+    ) {
+      dispatch(orderByRating(e.target.value));
+    }
+    dispatch(setCurrentPage(1));
   }
 
   return (

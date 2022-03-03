@@ -6,6 +6,8 @@ export const SET_LOADING = "SET_LOADING";
 export const GET_GENRES = "GET_GENRES";
 export const FILTER_BY_GENRE = "FILTER_BY_GENRE";
 export const ORDER_BY_NAME = "ORDER_BY_NAME";
+export const SET_CURRENT_PAGE = "SET_CURRENT_PAGE";
+export const ORDER_BY_RATING = "ORDER_BY_RATING";
 
 export function getVideogames() {
   return async function (dispatch) {
@@ -45,4 +47,12 @@ export function filterByGenre(payload) {
 
 export function orderByName(payload) {
   return { type: ORDER_BY_NAME, payload };
+}
+
+export function setCurrentPage(payload) {
+  return { type: SET_CURRENT_PAGE, payload };
+}
+
+export function orderByRating(payload) {
+  return { type: ORDER_BY_RATING, payload };
 }

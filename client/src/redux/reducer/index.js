@@ -6,12 +6,15 @@ import {
   GET_GENRES,
   FILTER_BY_GENRE,
   ORDER_BY_NAME,
+  SET_CURRENT_PAGE,
+  ORDER_BY_RATING,
 } from "../actions";
 
 const initialState = {
   videogames: [],
   allVideogames: [],
   genres: [],
+  currentPage: 1,
   loading: true,
 };
 
@@ -93,6 +96,46 @@ function rootReducer(state = initialState, action) {
           loading: false,
         };
       }
+    case ORDER_BY_RATING:
+      if (action.payload === "menor-rating") {
+        const gamesOrdered = state.allVideogames.sort((a, b) => {
+          if (a.rating > b.rating) {
+            return 1;
+          }
+          if (b.rating > a.rating) {
+            return -1;
+          }
+          return 0;
+        });
+        console.log(gamesOrdered);
+        return {
+          ...state,
+          videogames: gamesOrdered,
+          loading: false,
+        };
+      }
+      if (action.payload === "mayor-rating") {
+        const gamesOrdered = state.allVideogames.sort((a, b) => {
+          if (a.rating > b.rating) {
+            return -1;
+          }
+          if (b.rating > a.rating) {
+            return 1;
+          }
+          return 0;
+        });
+        console.log(gamesOrdered);
+        return {
+          ...state,
+          videogames: gamesOrdered,
+          loading: false,
+        };
+      }
+    case SET_CURRENT_PAGE:
+      return {
+        ...state,
+        currentPage: action.payload,
+      };
     default:
       return state;
   }

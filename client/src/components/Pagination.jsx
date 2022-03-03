@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import Card from "./Card";
 import styles from "./Pagination.module.css";
 import { useDispatch, useSelector } from "react-redux";
+import { setCurrentPage } from "../redux/actions";
 
 const renderData = (data) => {
   return data.map((v) => {
@@ -17,7 +18,8 @@ const renderData = (data) => {
 };
 
 export default function Paginado({ videogames }) {
-  const [currentPage, setcurrentPage] = useState(1);
+  const dispatch = useDispatch();
+  const currentPage = useSelector((state) => state.currentPage);
   const [itemsPerPage, setitemsPerPage] = useState(15);
 
   const [pageNumberLimit, setpageNumberLimit] = useState(5);
@@ -25,7 +27,7 @@ export default function Paginado({ videogames }) {
   const [minPageNumberLimit, setminPageNumberLimit] = useState(0);
 
   const handleClick = (e) => {
-    setcurrentPage(Number(e.target.id));
+    dispatch(setCurrentPage(Number(e.target.id)));
   };
 
   const pages = [];
@@ -55,7 +57,7 @@ export default function Paginado({ videogames }) {
   });
 
   const handleNextbtn = () => {
-    setcurrentPage(currentPage + 1);
+    dispatch(setCurrentPage(currentPage + 1));
 
     if (currentPage + 1 > maxPageNumberLimit) {
       setmaxPageNumberLimit(maxPageNumberLimit + pageNumberLimit);
@@ -64,7 +66,7 @@ export default function Paginado({ videogames }) {
   };
 
   const handlePrevbtn = () => {
-    setcurrentPage(currentPage - 1);
+    dispatch(setCurrentPage(currentPage - 1));
 
     if ((currentPage - 1) % pageNumberLimit === 0) {
       setmaxPageNumberLimit(maxPageNumberLimit - pageNumberLimit);
