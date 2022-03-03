@@ -8,6 +8,7 @@ import {
   getDBVideogames,
   getGenres,
   getVideogames,
+  orderByName,
   setLoading,
 } from "../redux/actions";
 import load from "../assets/loading.gif";
@@ -18,12 +19,11 @@ export default function Home() {
   const loading = useSelector((state) => state.loading);
   const genres = useSelector((state) => state.genres);
   let videogames = useSelector((state) => state.videogames);
-  let allVideogames = useSelector((state) => state.allVideogames);
 
   useEffect(() => {
     dispatch(getVideogames());
     dispatch(getGenres());
-  }, [dispatch]);
+  }, []);
 
   const handleReload = (e) => {
     e.preventDefault();
@@ -59,14 +59,13 @@ export default function Home() {
     }
   };
 
-  // console.log(gamesFiltered);
   const handleGenres = (e) => {
-    const gamesFiltered = allVideogames.filter((g) =>
-      g.genres.includes(e.target.value)
-    );
-    dispatch(filterByGenre(gamesFiltered));
+    dispatch(filterByGenre(e.target.value));
   };
-  // console.log(allVideogames[0].genres);
+
+  function handleSort(e) {
+    dispatch(orderByName(e.target.value));
+  }
 
   return (
     <div>
@@ -76,8 +75,7 @@ export default function Home() {
       <br />
       <br />
       <label>Ordenar: </label>
-      <select>
-        {/* <select onChange={handleSort}> */}
+      <select onChange={handleSort}>
         <option>Selecciona</option>
         <option value="a-z">A - Z</option>
         <option value="z-a">Z - A</option>
@@ -96,12 +94,11 @@ export default function Home() {
           );
         })}
       </select>
-      <label>Plataformas: </label>
-      <select>
-        {/* <select onChange={handlePlatforms}> */}
+      {/* <label>Plataformas: </label>
+        <select onChange={handlePlatforms}>
         <option>Selecciona</option>
         <option value="genres">Map de las plataformas</option>
-      </select>
+      </select> */}
       <label>Filtrar: </label>
       <select onChange={handleFilterCreated}>
         <option>Selecciona</option>
@@ -115,7 +112,7 @@ export default function Home() {
           <img src={load} alt="" />
         </>
       ) : (
-        <Pagination allVideogames={videogames} />
+        <Pagination videogames={videogames} />
       )}
       <br />
       <br />

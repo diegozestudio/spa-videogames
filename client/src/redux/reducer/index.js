@@ -5,6 +5,7 @@ import {
   GET_DB_VIDEOGAMES,
   GET_GENRES,
   FILTER_BY_GENRE,
+  ORDER_BY_NAME,
 } from "../actions";
 
 const initialState = {
@@ -47,11 +48,51 @@ function rootReducer(state = initialState, action) {
         loading: false,
       };
     case FILTER_BY_GENRE:
+      const gamesFiltered = state.allVideogames.filter((g) =>
+        g.genres.includes(action.payload)
+      );
       return {
         ...state,
-        videogames: action.payload,
+        videogames: gamesFiltered,
         loading: false,
       };
+    case ORDER_BY_NAME:
+      if (action.payload === "a-z") {
+        console.log("entre al a-z");
+        const gamesOrdered = state.allVideogames.sort((a, b) => {
+          if (a.name > b.name) {
+            return 1;
+          }
+          if (b.name > a.name) {
+            return -1;
+          }
+          return 0;
+        });
+        console.log(gamesOrdered);
+        return {
+          ...state,
+          videogames: gamesOrdered,
+          loading: false,
+        };
+      }
+      if (action.payload === "z-a") {
+        console.log("entre al z-a");
+        const gamesOrdered = state.allVideogames.sort((a, b) => {
+          if (a.name > b.name) {
+            return -1;
+          }
+          if (b.name > a.name) {
+            return 1;
+          }
+          return 0;
+        });
+        console.log(gamesOrdered);
+        return {
+          ...state,
+          videogames: gamesOrdered,
+          loading: false,
+        };
+      }
     default:
       return state;
   }

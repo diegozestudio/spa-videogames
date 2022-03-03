@@ -5,6 +5,7 @@ export const GET_DB_VIDEOGAMES = "GET_DB_VIDEOGAMES";
 export const SET_LOADING = "SET_LOADING";
 export const GET_GENRES = "GET_GENRES";
 export const FILTER_BY_GENRE = "FILTER_BY_GENRE";
+export const ORDER_BY_NAME = "ORDER_BY_NAME";
 
 export function getVideogames() {
   return async function (dispatch) {
@@ -40,4 +41,8 @@ export function setLoading(payload) {
 
 export function filterByGenre(payload) {
   return { type: FILTER_BY_GENRE, payload };
+}
+
+export function orderByName(payload) {
+  return { type: ORDER_BY_NAME, payload };
 }

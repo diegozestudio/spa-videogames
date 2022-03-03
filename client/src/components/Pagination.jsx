@@ -1,10 +1,9 @@
 import React from "react";
-import { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { getVideogames } from "../redux/actions";
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import Card from "./Card";
 import styles from "./Pagination.module.css";
+import { useDispatch, useSelector } from "react-redux";
 
 const renderData = (data) => {
   return data.map((v) => {
@@ -17,10 +16,7 @@ const renderData = (data) => {
   });
 };
 
-export default function Paginado({ allVideogames }) {
-  const dispatch = useDispatch();
-  // const allVideogames = useSelector((state) => state.videogames);
-
+export default function Paginado({ videogames }) {
   const [currentPage, setcurrentPage] = useState(1);
   const [itemsPerPage, setitemsPerPage] = useState(15);
 
@@ -33,13 +29,13 @@ export default function Paginado({ allVideogames }) {
   };
 
   const pages = [];
-  for (let i = 1; i <= Math.ceil(allVideogames.length / itemsPerPage); i++) {
+  for (let i = 1; i <= Math.ceil(videogames.length / itemsPerPage); i++) {
     pages.push(i);
   }
 
   const indexOfLastItem = currentPage * itemsPerPage;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
-  const currentItems = allVideogames.slice(indexOfFirstItem, indexOfLastItem);
+  const currentItems = videogames.slice(indexOfFirstItem, indexOfLastItem);
 
   const renderPageNumbers = pages.map((number) => {
     if (number < maxPageNumberLimit + 1 && number > minPageNumberLimit) {
