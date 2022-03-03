@@ -2,7 +2,12 @@ import React from "react";
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import { getVideogames, setLoading } from "../redux/actions";
+import {
+  getApiVideogames,
+  getDBVideogames,
+  getVideogames,
+  setLoading,
+} from "../redux/actions";
 import load from "../assets/loading.gif";
 import Pagination from "./Pagination";
 
@@ -13,7 +18,7 @@ export default function Home() {
 
   useEffect(() => {
     dispatch(getVideogames());
-  }, [dispatch]);
+  }, []);
 
   const handleReload = (e) => {
     e.preventDefault();
@@ -28,6 +33,25 @@ export default function Home() {
   //extras
   //ordenar Fecha de Lanzamiento
   //filtrar Plataformas
+
+  // const handleSort = (e) => {
+  //   if (e.target.value === a - z) {
+  //     dispatch(getdeAaZ());
+  //   }
+  // };
+
+  const handleFilterCreated = (e) => {
+    if (e.target.value === "all") {
+      dispatch(getVideogames());
+    }
+    if (e.target.value === "api") {
+      dispatch(getApiVideogames());
+    }
+    if (e.target.value === "db") {
+      dispatch(getDBVideogames());
+    }
+  };
+
   return (
     <div>
       <Link to="/videogame">Crear Nuevo Videogame</Link>
@@ -38,6 +62,7 @@ export default function Home() {
       <label>Ordenar: </label>
       <select>
         {/* <select onChange={handleSort}> */}
+        <option>Selecciona</option>
         <option value="a-z">A - Z</option>
         <option value="z-a">Z - A</option>
         <option value="mayor-rating">Mayor Rating</option>
@@ -46,18 +71,20 @@ export default function Home() {
       <label>Géneros: </label>
       <select>
         {/* <select onChange={handleGenres}> */}
+        <option>Selecciona</option>
         <option value="genres">Map de los generos</option>
       </select>
       <label>Plataformas: </label>
       <select>
         {/* <select onChange={handlePlatforms}> */}
+        <option>Selecciona</option>
         <option value="genres">Map de las plataformas</option>
       </select>
       <label>Filtrar: </label>
-      <select>
-        {/* <select onChange={handleFilterCreated}> */}
+      {/* <select> */}
+      <select onChange={handleFilterCreated}>
         <option value="all">Todos</option>
-        <option value="created">Creados</option>
+        <option value="db">Creados</option>
         <option value="api">Existentes</option>
       </select>
       {loading ? (

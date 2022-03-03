@@ -30,6 +30,16 @@ router.get("/videogames", async (req, res) => {
   }
 });
 
+router.get("/api_videogames", async (req, res) => {
+  let charactersApi = await getApiInfo();
+  res.status(200).send(charactersApi);
+});
+
+router.get("/db_videogames", async (req, res) => {
+  let charactersDB = await getDbInfo();
+  res.status(200).send(charactersDB);
+});
+
 router.get("/genres", async (req, res) => {
   try {
     const genresApi = await getApiInfo();

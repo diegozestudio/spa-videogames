@@ -1,4 +1,9 @@
-import { GET_VIDEOGAMES, SET_LOADING } from "../actions";
+import {
+  GET_VIDEOGAMES,
+  SET_LOADING,
+  GET_API_VIDEOGAMES,
+  GET_DB_VIDEOGAMES,
+} from "../actions";
 
 const initialState = {
   videogames: [],
@@ -8,6 +13,18 @@ const initialState = {
 function rootReducer(state = initialState, action) {
   switch (action.type) {
     case GET_VIDEOGAMES:
+      return {
+        ...state,
+        videogames: action.payload,
+        loading: false,
+      };
+    case GET_API_VIDEOGAMES:
+      return {
+        ...state,
+        videogames: action.payload,
+        loading: false,
+      };
+    case GET_DB_VIDEOGAMES:
       return {
         ...state,
         videogames: action.payload,

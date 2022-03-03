@@ -5,9 +5,11 @@ import { getVideogames } from "../redux/actions";
 
 export default function LandingPage() {
   const dispatch = useDispatch();
+
   useEffect(() => {
     dispatch(getVideogames());
   }, [dispatch]);
+
   return (
     <div>
       <h1>Component Landing</h1>
