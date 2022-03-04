@@ -24,6 +24,7 @@ export default function Home() {
   let videogames = useSelector((state) => state.videogames);
 
   useEffect(() => {
+    dispatch(setLoading(true));
     dispatch(getVideogames());
     dispatch(getGenres());
   }, []);
