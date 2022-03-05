@@ -10,6 +10,7 @@ export const SET_CURRENT_PAGE = "SET_CURRENT_PAGE";
 export const ORDER_BY_RATING = "ORDER_BY_RATING";
 export const GET_NAME_VG = "GET_NAME_VG";
 export const GET_DETAIL = "GET_DETAIL";
+export const POST_VG = "POST_VG";
 
 export function getVideogames() {
   return async function (dispatch) {
@@ -87,4 +88,11 @@ export function setCurrentPage(payload) {
 
 export function orderByRating(payload) {
   return { type: ORDER_BY_RATING, payload };
+}
+
+export function postVideogame(payload) {
+  return async function (dispatch) {
+    const json = await axios.post("http://localhost:3001/videogame", payload);
+    return json;
+  };
 }

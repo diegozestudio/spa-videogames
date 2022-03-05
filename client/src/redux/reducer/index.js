@@ -10,6 +10,7 @@ import {
   ORDER_BY_RATING,
   GET_NAME_VG,
   GET_DETAIL,
+  POST_VG,
 } from "../actions";
 
 const initialState = {
@@ -146,6 +147,10 @@ function rootReducer(state = initialState, action) {
       return {
         ...state,
         currentPage: action.payload,
+      };
+    case POST_VG:
+      return {
+        ...state,
       };
     default:
       return state;

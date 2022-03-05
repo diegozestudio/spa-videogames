@@ -35,19 +35,6 @@ export default function Home() {
     dispatch(getVideogames());
   };
 
-  //ordenar Alfabeticamente, Rating
-  //filtrar Generos
-
-  //extras
-  //ordenar Fecha de Lanzamiento
-  //filtrar Plataformas
-
-  // const handleSort = (e) => {
-  //   if (e.target.value === a - z) {
-  //     dispatch(getdeAaZ());
-  //   }
-  // };
-
   const handleFilterCreated = (e) => {
     if (e.target.value === "all") {
       dispatch(setLoading(true));

@@ -5,7 +5,7 @@ import { Link, useParams } from "react-router-dom";
 import { getDetail, setLoading } from "../redux/actions";
 import load from "../assets/loading.gif";
 
-function Detail(props) {
+function Detail() {
   const { id } = useParams();
   const dispatch = useDispatch();
   const videogame = useSelector((state) => state.detail);
@@ -13,7 +13,7 @@ function Detail(props) {
 
   useEffect(() => {
     dispatch(setLoading(true));
-    dispatch(getDetail(props.match.params.id));
+    dispatch(getDetail(id));
   }, [dispatch]);
 
   return (
@@ -31,7 +31,7 @@ function Detail(props) {
               <h1> {videogame.name} </h1>
               <img
                 src={videogame.image}
-                alt={videogame.nam}
+                alt={videogame.name}
                 width="500px"
                 height="300px"
               />
@@ -43,7 +43,7 @@ function Detail(props) {
               <span>Generos: </span>
               {videogame.genres &&
                 videogame.genres.map((g) => {
-                  return <span key={g}>{g}</span>;
+                  return <span key={g}>{g}, </span>;
                 })}
               <br />
               <span>Plataformas: </span>

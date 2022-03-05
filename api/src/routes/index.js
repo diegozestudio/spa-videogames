@@ -58,6 +58,23 @@ router.get("/genres", async (req, res) => {
   }
 });
 
+// router.get("/platforms", async (req, res) => {
+//   try {
+//     const platformsApi = await getApiInfo();
+//     const platforms = platformsApiApi.map((c) => c.genres);
+//     const platformsApiEach = [...new Set(platformsApi.flat())];
+//     platformsApiEach.forEach((platform) => {
+//       Platform.findOrCreate({
+//         where: { name: platform },
+//       });
+//     });
+//     const allPlatforms = await Platform.findAll();
+//     res.send(allPlatforms);
+//   } catch (err) {
+//     console.log("entré al catch :(", err);
+//   }
+// });
+
 router.post("/videogame", async (req, res) => {
   let {
     name,
