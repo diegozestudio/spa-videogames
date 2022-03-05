@@ -17,6 +17,7 @@ const getApiInfo = async () => {
           name: e.name,
           image: e.background_image,
           genres: e.genres.map((g) => g.name),
+          platforms: e.platforms.map((p) => p.platform.name),
           rating: e.rating,
         };
       });
