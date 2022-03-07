@@ -9,10 +9,31 @@ import {
 } from "../redux/actions";
 import load from "../assets/loading.gif";
 
+const validate = (input) => {
+  let errors = {};
+  if (!input.name) {
+    errors.name = "Se requiere un Nombre";
+  } else if (!input.description) {
+    errors.description = "Se requiere una Descripción";
+  } else if (!input.image) {
+    errors.image = "Se requiere una Imagen";
+  } else if (!input.released) {
+    errors.released = "Se requiere una Fecha de Lanzamiento";
+  } else if (!input.rating) {
+    errors.rating = "Se requiere un Rating";
+  } else if (!input.genres[0]) {
+    errors.genres = "Se requiere al menos un Género";
+  } else if (!input.platforms[0]) {
+    errors.platforms = "Se requiere al menos una Plataforma";
+  }
+  return errors;
+};
+
 export default function VideogameCreate() {
   const dispatch = useDispatch();
   const loading = useSelector((state) => state.loading);
   const genres = useSelector((state) => state.genres);
+  const [errors, setErrors] = useState({});
   const [input, setInput] = useState({
     name: "",
     description: "",
@@ -22,7 +43,6 @@ export default function VideogameCreate() {
     genres: [],
     platforms: [],
   });
-
   const juegos = useSelector((state) => state.allVideogames);
   const allPlatforms = juegos.map((c) => c.platforms);
   const platforms = [...new Set(allPlatforms.flat())];
@@ -32,6 +52,12 @@ export default function VideogameCreate() {
       ...input,
       [e.target.name]: e.target.value,
     });
+    setErrors(
+      validate({
+        ...input,
+        [e.target.name]: e.target.value,
+      })
+    );
   };
 
   const handleDeleteGenres = (e) => {
@@ -40,7 +66,6 @@ export default function VideogameCreate() {
       genres: input.genres.filter((c) => c !== e.target.name),
     });
   };
-
   const handleSelectGenres = (e) => {
     setInput({
       ...input,
@@ -53,7 +78,6 @@ export default function VideogameCreate() {
       platforms: input.platforms.filter((c) => c !== e.target.name),
     });
   };
-
   const handleSelectPlatforms = (e) => {
     setInput({
       ...input,
@@ -70,7 +94,7 @@ export default function VideogameCreate() {
   const handleSubmit = (e) => {
     e.preventDefault();
     dispatch(postVideogame(input));
-    alert("Personaje creado padre");
+    alert("Videogame creado con éxito");
     setInput({
       name: "",
       description: "",
@@ -98,6 +122,7 @@ export default function VideogameCreate() {
             onChange={handleChange}
           />
         </div>
+        {errors.name && <span>{errors.name}</span>}
         <div>
           <label>Descripción</label>
           <input
@@ -107,6 +132,7 @@ export default function VideogameCreate() {
             onChange={handleChange}
           />
         </div>
+        {errors.description && <span>{errors.description}</span>}
         <div>
           <label>Imagen</label>
           <input
@@ -116,8 +142,9 @@ export default function VideogameCreate() {
             onChange={handleChange}
           />
         </div>
+        {errors.image && <span>{errors.image}</span>}
         <div>
-          <label>Released</label>
+          <label>Fecha de Lanzamiento</label>
           <input
             type="text"
             value={input.released}
@@ -125,6 +152,7 @@ export default function VideogameCreate() {
             onChange={handleChange}
           />
         </div>
+        {errors.released && <span>{errors.released}</span>}
         <div>
           <label>Rating</label>
           <input
@@ -134,9 +162,10 @@ export default function VideogameCreate() {
             onChange={handleChange}
           />
         </div>
+        {errors.rating && <span>{errors.rating}</span>}
         {loading ? (
           <>
-            <h2>Cargando Generos y Plataformas</h2>
+            <h2>Cargando Géneros y Plataformas</h2>
             <img src={load} alt="" />
           </>
         ) : (
@@ -144,13 +173,17 @@ export default function VideogameCreate() {
             <label style={{ fontWeight: "bold" }}>Genres: </label>
             <select onChange={handleSelectGenres}>
               {genres.map((genres) => {
-                return <option value={genres.name}>{genres.name} </option>;
+                return (
+                  <option value={genres.name} key={genres.name}>
+                    {genres.name}
+                  </option>
+                );
               })}
             </select>
-            {input.genres.map((oc) => (
+            {input.genres.map((g) => (
               <div>
-                <p>{oc}</p>
-                <button name={oc} onClick={handleDeleteGenres}>
+                <p>{g}</p>
+                <button name={g} onClick={handleDeleteGenres}>
                   X
                 </button>
               </div>
@@ -159,13 +192,17 @@ export default function VideogameCreate() {
             <label style={{ fontWeight: "bold" }}>Platforms: </label>
             <select onChange={handleSelectPlatforms}>
               {platforms.map((platform) => {
-                return <option value={platform}>{platform} </option>;
+                return (
+                  <option value={platform} key={platform}>
+                    {platform}
+                  </option>
+                );
               })}
             </select>
-            {input.platforms.map((x) => (
+            {input.platforms.map((p) => (
               <div>
-                <p>{x}</p>
-                <button name={x} onClick={handleDeletePlatform}>
+                <p>{p}</p>
+                <button name={p} onClick={handleDeletePlatform}>
                   X
                 </button>
               </div>
@@ -174,7 +211,19 @@ export default function VideogameCreate() {
         )}
         <br />
         <br />
-        <button type="submit">Crear Videogame</button>
+        {input.name &&
+        input.description &&
+        input.image &&
+        input.released &&
+        input.rating &&
+        input.platforms.length &&
+        input.genres.length ? (
+          <button type="submit">Crear Videogame</button>
+        ) : (
+          <button type="submit" disabled={true}>
+            Crear Videogame
+          </button>
+        )}
       </form>
     </div>
   );
