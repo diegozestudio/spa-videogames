@@ -11,14 +11,14 @@
 }
 
 .pageNumbers li.active {
-  background-color: black;
-  color: white;
+  background-color: #fff;
+  color: #000;
 }
 
 .pageNumbers li button {
   background-color: transparent;
   border: none;
-  color: black;
+  color: #fff;
   cursor: pointer;
 }
 

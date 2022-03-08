@@ -1,7 +1,20 @@
 .image {
+  position: absolute;
   object-fit: cover;
   border-top-left-radius: 1rem;
   border-top-right-radius: 1rem;
   width: 12.5vw;
   height: 40vh;
+}
+
+h3 {
+  font-size: 1.25rem;
+  z-index: 20;
+  color: #fff;
+  text-shadow: 2px 2px 2px #000000;
+}
+
+span {
+  margin-left: 2px;
+  color: #000;
 }
