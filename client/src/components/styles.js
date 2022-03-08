@@ -2,8 +2,8 @@ import styled, { keyframes } from "styled-components";
 import { Link } from "react-router-dom";
 
 export const LinktoHome = styled(Link)`
-  top: 34.5rem;
-  left: 31rem;
+  top: 45vh;
+  left: 60vw;
   padding: 1rem 3rem;
   text-decoration: none;
   font-size: 4rem;
@@ -19,6 +19,24 @@ export const LinktoHome = styled(Link)`
     background: linear-gradient(45deg, transparent 5%, #000 5%);
     box-shadow: 6px 0px 0px #ff013c;
   }
+`;
+
+export const LinkVerMas = styled(Link)`
+  position: relative;
+  font-size: 1.5rem;
+  text-decoration: none;
+  color: #000;
+`;
+
+export const FondoVermas = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 12.5vw;
+  height: 5vh;
+  background-color: #fff;
+  border-bottom-left-radius: 1rem;
+  border-bottom-right-radius: 1rem;
 `;
 
 const spin = keyframes`
@@ -40,8 +58,15 @@ export const Loading = styled.div`
 `;
 
 export const HomeSt = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  width: 80%;
+  margin: auto;
+  max-width: 1400px;
+  padding: 40px 0;
 `;
+
+export const ContCards = styled.div`
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+`;
+
+export const CardSt = styled.div``;

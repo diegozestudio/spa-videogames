@@ -1,0 +1,7 @@
+.image {
+  object-fit: cover;
+  border-top-left-radius: 1rem;
+  border-top-right-radius: 1rem;
+  width: 12.5vw;
+  height: 40vh;
+}
