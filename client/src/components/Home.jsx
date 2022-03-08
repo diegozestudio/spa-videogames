@@ -13,9 +13,9 @@ import {
   setCurrentPage,
   setLoading,
 } from "../redux/actions";
-import load from "../assets/loading.gif";
 import Pagination from "./Pagination";
 import SearchBar from "./SearchBar";
+import { HomeSt, Loading } from "./styles";
 
 export default function Home() {
   const dispatch = useDispatch();
@@ -68,7 +68,7 @@ export default function Home() {
   }
 
   return (
-    <div>
+    <HomeSt>
       <Link to="/videogame">Crear Nuevo Videogame</Link>
       <SearchBar />
       <h1>Componente Home</h1>
@@ -95,11 +95,6 @@ export default function Home() {
           );
         })}
       </select>
-      {/* <label>Plataformas: </label>
-        <select onChange={handlePlatforms}>
-        <option>Selecciona</option>
-        <option value="genres">Map de las plataformas</option>
-      </select> */}
       <label>Filtrar: </label>
       <select onChange={handleFilterCreated}>
         <option>Selecciona</option>
@@ -110,7 +105,7 @@ export default function Home() {
       {loading ? (
         <>
           <h2>Cargando los Videogames...</h2>
-          <img src={load} alt="" />
+          <Loading />
         </>
       ) : (
         <Pagination videogames={videogames} />
@@ -118,6 +113,6 @@ export default function Home() {
       <br />
       <br />
       <Link to="/">Volver a la Landing</Link>
-    </div>
+    </HomeSt>
   );
 }

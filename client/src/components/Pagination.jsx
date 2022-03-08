@@ -1,6 +1,5 @@
 import React from "react";
 import { useState } from "react";
-import { Link } from "react-router-dom";
 import Card from "./Card";
 import styles from "./Pagination.module.css";
 import { useDispatch, useSelector } from "react-redux";
@@ -11,7 +10,6 @@ const renderData = (data) => {
     return (
       <div key={v.id}>
         <Card name={v.name} image={v.image} genres={v.genres} id={v.id} />
-        <Link to={`/videogame/${v.id}`}>Ver más</Link>
       </div>
     );
   });

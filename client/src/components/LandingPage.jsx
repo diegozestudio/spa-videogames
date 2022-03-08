@@ -2,6 +2,9 @@ import React, { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import { getVideogames } from "../redux/actions";
+import { BackImage, btnHome, LinktoHome, Loading } from "./styles";
+import wallpaper from "../assets/imageBack.jpg";
+import styles from "./LandingPage.module.css";
 
 export default function LandingPage() {
   const dispatch = useDispatch();
@@ -11,11 +14,9 @@ export default function LandingPage() {
   }, [dispatch]);
 
   return (
-    <div>
-      <h1>Component Landing</h1>
-      <Link to="/home">
-        <button>Home</button>
-      </Link>
-    </div>
+    <>
+      <img src={wallpaper} className={styles.image}></img>
+      <LinktoHome to="/home">START</LinktoHome>
+    </>
   );
 }

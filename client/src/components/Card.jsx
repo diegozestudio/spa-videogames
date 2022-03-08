@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 export default function Card({ image, name, genres, id }) {
   return (
@@ -11,6 +12,7 @@ export default function Card({ image, name, genres, id }) {
             return <li key={g + id}>{g} </li>;
           })}
       </ul>
+      <Link to={`/videogame/${id}`}>Ver más</Link>
     </div>
   );
 }
