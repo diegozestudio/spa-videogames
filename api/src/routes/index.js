@@ -58,23 +58,6 @@ router.get("/genres", async (req, res) => {
   }
 });
 
-// router.get("/platforms", async (req, res) => {
-//   try {
-//     const platformsApi = await getApiInfo();
-//     const platforms = platformsApiApi.map((c) => c.genres);
-//     const platformsApiEach = [...new Set(platformsApi.flat())];
-//     platformsApiEach.forEach((platform) => {
-//       Platform.findOrCreate({
-//         where: { name: platform },
-//       });
-//     });
-//     const allPlatforms = await Platform.findAll();
-//     res.send(allPlatforms);
-//   } catch (err) {
-//     console.log("entré al catch :(", err);
-//   }
-// });
-
 router.post("/videogame", async (req, res) => {
   let {
     name,
@@ -86,20 +69,32 @@ router.post("/videogame", async (req, res) => {
     createdInDB,
     genres,
   } = req.body;
-  let newVideogame = await Videogame.create({
-    name,
-    description,
-    released,
-    rating,
-    platforms,
-    image,
-    createdInDB,
-  });
-  let genreDb = await Genre.findAll({
-    where: { name: genres },
-  });
-  newVideogame.addGenre(genreDb);
-  res.send("Videogame creado con exito");
+  if (
+    name &&
+    description &&
+    released &&
+    rating &&
+    image &&
+    platforms.length &&
+    genres.length
+  ) {
+    let newVideogame = await Videogame.create({
+      name,
+      description,
+      released,
+      rating,
+      platforms,
+      image,
+      createdInDB,
+    });
+    let genreDb = await Genre.findAll({
+      where: { name: genres },
+    });
+    newVideogame.addGenre(genreDb);
+    res.send("Videogame creado con exito");
+  } else {
+    res.status(400).send("Faltaron datos para crear el videogame");
+  }
 });
 
 router.get("/videogame/:id", async (req, res) => {

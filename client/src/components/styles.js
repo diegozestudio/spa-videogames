@@ -47,7 +47,8 @@ export const LinktoHome = styled(Link)`
 `;
 
 export const LinkVerMas = styled(Link)`
-  font-size: 1.5rem;
+  margin-bottom: 0.5rem;
+  font-size: 1.25rem;
   text-decoration: none;
   color: #fff;
 `;
@@ -55,7 +56,8 @@ export const LinkVerMas = styled(Link)`
 export const FondoVermas = styled.div`
   position: relative;
   display: flex;
-  align-items: center;
+  align-items: flex-end;
+  margin-bottom: 14px;
   justify-content: center;
   width: 12.5vw;
   height: 40vh;

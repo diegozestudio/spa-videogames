@@ -114,8 +114,9 @@ export default function VideogameCreate() {
       <h1>Nuevo Videogame</h1>
       <form onSubmit={handleSubmit}>
         <div>
-          <label>Nombre</label>
+          <label htmlFor="nameID">Nombre</label>
           <input
+            id="nameID"
             type="text"
             value={input.name}
             name="name"
@@ -124,8 +125,9 @@ export default function VideogameCreate() {
         </div>
         {errors.name && <span>{errors.name}</span>}
         <div>
-          <label>Descripción</label>
+          <label htmlFor="descID">Descripción</label>
           <input
+            id="descID"
             type="text"
             value={input.description}
             name="description"
@@ -134,8 +136,9 @@ export default function VideogameCreate() {
         </div>
         {errors.description && <span>{errors.description}</span>}
         <div>
-          <label>Imagen</label>
+          <label htmlFor="imageID">Imagen</label>
           <input
+            id="imageID"
             type="text"
             value={input.image}
             name="image"
