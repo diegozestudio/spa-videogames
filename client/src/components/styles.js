@@ -119,7 +119,7 @@ export const NavTop = styled.div`
 
 export const NavTopRight = styled.div`
   display: flex;
-  width: 500px;
+  width: 655px;
   justify-content: space-between;
   margin-right: 5rem;
   align-items: center;
@@ -146,4 +146,29 @@ export const NavBot = styled.div`
   );
   /* warning: gradient uses a rotation that is not supported by CSS and may not behave as expected */
   box-shadow: 0px 3px 8px rgba(0, 0, 0, 0.25);
+`;
+
+export const DivNewGame = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  column-gap: 10px;
+  padding: 10px 20px;
+  background-color: #fff;
+  border-radius: 25px;
+`;
+
+export const LinkNewGame = styled(Link)`
+  font-family: "Poppins";
+  font-weight: 400;
+  text-decoration: none;
+  color: #a60000;
+`;
+
+export const SelectCosas = styled.div`
+  display: flex;
+  align-items: center;
+  padding: 8px 20px;
+  background-color: #fff;
+  border-radius: 15px;
 `;

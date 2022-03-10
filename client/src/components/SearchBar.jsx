@@ -19,8 +19,8 @@ export default function SearchBar() {
     setName("");
   };
   return (
-    <div className={styles.bordesearch}>
-      <form onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit}>
+      <div className={styles.bordesearch}>
         <input
           type="text"
           placeholder="Buscar..."
@@ -28,7 +28,7 @@ export default function SearchBar() {
           onChange={handleChange}
         />
         <input src={search} type="image" className={styles.lupita} />
-      </form>
-    </div>
+      </div>
+    </form>
   );
 }

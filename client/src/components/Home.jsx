@@ -16,18 +16,24 @@ import {
 import Pagination from "./Pagination";
 import SearchBar from "./SearchBar";
 import {
+  DivNewGame,
   HomeSt,
+  LinkNewGame,
   Loading,
   NavBot,
   NavBottomRight,
   NavTop,
   NavTopRight,
   NewSearchBar,
+  SelectCosas,
 } from "./styles";
 import joystick from "../assets/joystick.svg";
 import menu from "../assets/bars.svg";
 import styles from "./Home.module.css";
 import reload from "../assets/arrow-rotate-right.svg";
+import gamepad from "../assets/gamepad.svg";
+import flechabajo from "../assets/chevron-down.svg";
+import flecharriba from "../assets/angle-up.svg";
 
 export default function Home() {
   const dispatch = useDispatch();
@@ -82,39 +88,56 @@ export default function Home() {
   return (
     <>
       <NavTop>
-        <img src={joystick} className={styles.joystick} />
+        <Link to="/" className={styles.linkhome}>
+          <img src={joystick} className={styles.joystick} />
+        </Link>
         <NavTopRight>
           <SearchBar />
-          <Link to="/videogame">NEW GAME</Link>
+          <LinkNewGame to="/videogame">
+            <DivNewGame>
+              New
+              <img src={gamepad} className={styles.gamepad} />
+            </DivNewGame>
+          </LinkNewGame>
           <img src={menu} className={styles.hamburger} />
         </NavTopRight>
       </NavTop>
       <NavBot>
         <img onClick={handleReload} src={reload} className={styles.reload} />
         <NavBottomRight>
-          <select onChange={handleSort}>
-            <option>Orden</option>
-            <option value="a-z">A - Z</option>
-            <option value="z-a">Z - A</option>
-            <option value="mayor-rating">Mayor Rating</option>
-            <option value="menor-rating">Menor Rating</option>
-          </select>
-          <select onChange={handleGenres}>
-            <option>Géneros</option>
-            {genres.map((g) => {
-              return (
-                <option value={g.name} key={g.name}>
-                  {g.name}
-                </option>
-              );
-            })}
-          </select>
-          <select onChange={handleFilterCreated}>
-            <option>Origen</option>
-            <option value="all">Todos</option>
-            <option value="db">Creados</option>
-            <option value="api">Existentes</option>
-          </select>
+          <SelectCosas>
+            <select onChange={handleSort}>
+              <option>Orden</option>
+              <option value="a-z">A - Z</option>
+              <option value="z-a">Z - A</option>
+              <option value="mayor-rating">Mayor Rating</option>
+              <option value="menor-rating">Menor Rating</option>
+            </select>
+            <img src={flechabajo} className={styles.flechitabajo} />
+          </SelectCosas>
+          <SelectCosas>
+            <select onChange={handleGenres}>
+              <option>Géneros</option>
+              {genres.map((g) => {
+                return (
+                  <option value={g.name} key={g.name}>
+                    {g.name}
+                  </option>
+                );
+              })}
+            </select>
+            <img src={flechabajo} className={styles.flechitabajo} />
+          </SelectCosas>
+          <SelectCosas>
+            <select onChange={handleFilterCreated}>
+              <option>Origen</option>
+              <option value="all">Todos</option>
+              <option value="db">Creados</option>
+              <option value="api">Existentes</option>
+            </select>
+            <img src={flechabajo} className={styles.flechitabajo} />
+          </SelectCosas>
+          <img src={flecharriba} className={styles.flechitarriba} />
         </NavBottomRight>
       </NavBot>
       {loading ? (
@@ -125,9 +148,6 @@ export default function Home() {
       ) : (
         <Pagination videogames={videogames} />
       )}
-      <br />
-      <br />
-      <Link to="/">Volver a la Landing</Link>
     </>
   );
 }

@@ -11,4 +11,31 @@
 .reload {
   height: 30px;
   margin-left: 5rem;
+  cursor: pointer;
+}
+
+.linkhome {
+  align-self: flex-start;
+}
+
+.gamepad {
+  height: 30px;
+}
+
+select {
+  -webkit-appearance: none;
+  background-color: transparent;
+  border: none;
+  color: #17204d;
+  font-family: "Poppins";
+  font-weight: 400;
+}
+
+.flechitabajo {
+  height: 15px;
+}
+
+.flechitarriba {
+  height: 30px;
+  margin-right: 2px;
 }

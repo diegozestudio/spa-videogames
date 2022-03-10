@@ -18,7 +18,10 @@ input {
 }
 
 .bordesearch {
+  display: flex;
+  justify-content: space-between;
   border: 1px solid #fff;
-  padding: 10px 20px;
-  border-radius: 12px;
+  padding: 13px 20px;
+  border-radius: 15px;
+  width: 380px;
 }
