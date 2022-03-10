@@ -97,7 +97,6 @@ export default function Paginado({ videogames }) {
 
   return (
     <>
-      <h2>Componente Paginado</h2>
       <ContCards>{renderData(currentItems)}</ContCards>
       <ul className={styles.pageNumbers}>
         <li>

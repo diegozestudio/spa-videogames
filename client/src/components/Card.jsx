@@ -15,20 +15,12 @@ export default function Card({ image, name, genres, id }) {
         <h3>{name}</h3>
       </ContName>
       <img src={image} alt="videogame" className={styles.image} />
+      <ContGenres>
+        <span>{genres && genres.join(" - ").toUpperCase()}</span>
+      </ContGenres>
       <FondoVermas>
         <LinkVerMas to={`/videogame/${id}`}>Ver detalles</LinkVerMas>
       </FondoVermas>
-      <ContGenres>
-        {genres &&
-          genres.map((g) => {
-            return (
-              <span key={g + id}>
-                {g}
-                {genres[genres.length - 1] === g ? "" : " -"}
-              </span>
-            );
-          })}
-      </ContGenres>
     </CardSt>
   );
 }

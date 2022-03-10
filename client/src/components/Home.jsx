@@ -15,7 +15,19 @@ import {
 } from "../redux/actions";
 import Pagination from "./Pagination";
 import SearchBar from "./SearchBar";
-import { HomeSt, Loading } from "./styles";
+import {
+  HomeSt,
+  Loading,
+  NavBot,
+  NavBottomRight,
+  NavTop,
+  NavTopRight,
+  NewSearchBar,
+} from "./styles";
+import joystick from "../assets/joystick.svg";
+import menu from "../assets/bars.svg";
+import styles from "./Home.module.css";
+import reload from "../assets/arrow-rotate-right.svg";
 
 export default function Home() {
   const dispatch = useDispatch();
@@ -68,40 +80,43 @@ export default function Home() {
   }
 
   return (
-    <HomeSt>
-      <Link to="/videogame">Crear Nuevo Videogame</Link>
-      <SearchBar />
-      <h1>Componente Home</h1>
-      <button onClick={handleReload}>Volver a cargar personajes</button>
-      <br />
-      <br />
-      <label>Ordenar: </label>
-      <select onChange={handleSort}>
-        <option>Selecciona</option>
-        <option value="a-z">A - Z</option>
-        <option value="z-a">Z - A</option>
-        <option value="mayor-rating">Mayor Rating</option>
-        <option value="menor-rating">Menor Rating</option>
-      </select>
-      <label>Géneros: </label>
-      {/* <select> */}
-      <select onChange={handleGenres}>
-        <option>Selecciona</option>
-        {genres.map((g) => {
-          return (
-            <option value={g.name} key={g.name}>
-              {g.name}
-            </option>
-          );
-        })}
-      </select>
-      <label>Filtrar: </label>
-      <select onChange={handleFilterCreated}>
-        <option>Selecciona</option>
-        <option value="all">Todos</option>
-        <option value="db">Creados</option>
-        <option value="api">Existentes</option>
-      </select>
+    <>
+      <NavTop>
+        <img src={joystick} className={styles.joystick} />
+        <NavTopRight>
+          <SearchBar />
+          <Link to="/videogame">NEW GAME</Link>
+          <img src={menu} className={styles.hamburger} />
+        </NavTopRight>
+      </NavTop>
+      <NavBot>
+        <img onClick={handleReload} src={reload} className={styles.reload} />
+        <NavBottomRight>
+          <select onChange={handleSort}>
+            <option>Orden</option>
+            <option value="a-z">A - Z</option>
+            <option value="z-a">Z - A</option>
+            <option value="mayor-rating">Mayor Rating</option>
+            <option value="menor-rating">Menor Rating</option>
+          </select>
+          <select onChange={handleGenres}>
+            <option>Géneros</option>
+            {genres.map((g) => {
+              return (
+                <option value={g.name} key={g.name}>
+                  {g.name}
+                </option>
+              );
+            })}
+          </select>
+          <select onChange={handleFilterCreated}>
+            <option>Origen</option>
+            <option value="all">Todos</option>
+            <option value="db">Creados</option>
+            <option value="api">Existentes</option>
+          </select>
+        </NavBottomRight>
+      </NavBot>
       {loading ? (
         <>
           <h2>Cargando los Videogames...</h2>
@@ -113,6 +128,6 @@ export default function Home() {
       <br />
       <br />
       <Link to="/">Volver a la Landing</Link>
-    </HomeSt>
+    </>
   );
 }

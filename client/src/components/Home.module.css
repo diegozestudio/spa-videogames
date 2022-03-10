@@ -1,0 +1,14 @@
+.joystick {
+  align-self: flex-start;
+  height: 55px;
+  margin-left: 5rem;
+}
+
+.hamburger {
+  height: 30px;
+}
+
+.reload {
+  height: 30px;
+  margin-left: 5rem;
+}

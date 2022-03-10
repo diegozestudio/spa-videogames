@@ -1,12 +1,6 @@
 import styled, { keyframes } from "styled-components";
 import { Link } from "react-router-dom";
-
-export const HomeSt = styled.div`
-  width: 80%;
-  margin: auto;
-  max-width: 1400px;
-  padding: 40px 0;
-`;
+import SearchBar from "./SearchBar";
 
 const spin = keyframes`
 to {
@@ -27,78 +21,129 @@ export const Loading = styled.div`
 `;
 
 export const LinktoHome = styled(Link)`
-  top: 45vh;
+  top: 40vh;
   left: 60vw;
   padding: 1rem 3rem;
   text-decoration: none;
-  font-size: 4rem;
+  font-size: 6rem;
   font-family: "Bebas Neue", cursive;
   font-weight: 600;
-  background: linear-gradient(45deg, transparent 5%, #ff013c 5%);
+  background: linear-gradient(45deg, transparent 5%, #a60000 5%);
   border: 0;
   color: #fff;
   letter-spacing: 3px;
-  box-shadow: 6px 0px 0px #00e6f6;
+  box-shadow: 6px 0px 0px #f0f0f2;
   position: relative;
   &:hover {
-    background: linear-gradient(45deg, transparent 5%, #000 5%);
-    box-shadow: 6px 0px 0px #ff013c;
+    background: linear-gradient(45deg, transparent 5%, #17204d 5%);
+    box-shadow: 6px 0px 0px #a60000;
   }
 `;
 
 export const LinkVerMas = styled(Link)`
-  margin-bottom: 0.5rem;
-  font-size: 1.25rem;
   text-decoration: none;
+  font-size: 1.25rem;
   color: #fff;
 `;
 
 export const FondoVermas = styled.div`
-  position: relative;
+  position: absolute;
+  background-color: #00000080;
+  width: 250px;
+  height: 400px;
+  border-radius: 20px 20px 0px 0px;
   display: flex;
-  align-items: flex-end;
-  margin-bottom: 14px;
   justify-content: center;
-  width: 12.5vw;
-  height: 40vh;
-  bottom: 66px;
-  background-color: #000;
-  border-top-left-radius: 1rem;
-  border-top-right-radius: 1rem;
+  align-items: center;
   opacity: 0%;
-  transition: 0.3s;
+  transition: 0.25s;
   &:hover {
-    opacity: 50%;
+    opacity: 100%;
   }
 `;
 
 export const ContGenres = styled.div`
-  position: relative;
-  bottom: 80px;
-  border-bottom-left-radius: 1rem;
-  border-bottom-right-radius: 1rem;
   display: flex;
+  background-color: #fff;
   justify-content: center;
   align-items: center;
-  width: 12.5vw;
-  height: 4vh;
-  background-color: #fff;
+  padding: 5px 0;
+  width: 250px;
+  /* height: 45px; */
+  border-radius: 0px 0px 20px 20px;
 `;
 
 export const ContName = styled.div`
-  width: 12.5vw;
+  position: absolute;
   display: flex;
-  align-items: center;
   justify-content: center;
+  width: 250px;
+  height: 150px;
+  background: linear-gradient(
+    180deg,
+    rgba(0, 0, 0, 0.9) 0%,
+    rgba(0, 0, 0, 0) 100%
+  );
+  border-radius: 19px 19px 0px 0px;
 `;
 
 export const ContCards = styled.div`
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
-  /* row-gap: 15px; */
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin: 50px 200px;
+  column-gap: 40px;
+  row-gap: 20px;
 `;
 
 export const CardSt = styled.div`
   display: flex;
   flex-direction: column;
+  align-items: center;
+`;
+
+export const NavTop = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 75px;
+
+  background: radial-gradient(
+    100% 21813.02% at 0% 0%,
+    #17204c 3.05%,
+    #a60000 100%
+  );
+  /* warning: gradient uses a rotation that is not supported by CSS and may not behave as expected */
+  box-shadow: 0px 3px 8px rgba(0, 0, 0, 0.25);
+`;
+
+export const NavTopRight = styled.div`
+  display: flex;
+  width: 500px;
+  justify-content: space-between;
+  margin-right: 5rem;
+  align-items: center;
+  column-gap: 2rem;
+`;
+
+export const NavBottomRight = styled.div`
+  display: flex;
+  margin-right: 5rem;
+
+  align-items: center;
+  column-gap: 2rem;
+`;
+
+export const NavBot = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 50px;
+  background: radial-gradient(
+    100% 21813.02% at 0% 0%,
+    #17204c 3.05%,
+    #a60000 100%
+  );
+  /* warning: gradient uses a rotation that is not supported by CSS and may not behave as expected */
+  box-shadow: 0px 3px 8px rgba(0, 0, 0, 0.25);
 `;

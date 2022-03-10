@@ -15,16 +15,25 @@ module.exports = (sequelize) => {
       name: {
         type: DataTypes.STRING,
         allowNull: false,
+        validate: {
+          notEmpty: true,
+        },
       },
       description: {
         type: DataTypes.TEXT,
         allowNull: false,
+        validate: {
+          notEmpty: true,
+        },
       },
       released: {
         type: DataTypes.STRING,
       },
       rating: {
         type: DataTypes.FLOAT,
+        validate: {
+          isFloat: true,
+        },
       },
       platforms: {
         type: DataTypes.ARRAY(DataTypes.STRING),
@@ -32,6 +41,9 @@ module.exports = (sequelize) => {
       },
       image: {
         type: DataTypes.STRING,
+        validate: {
+          isUrl: true,
+        },
       },
       createdInDB: {
         type: DataTypes.BOOLEAN,

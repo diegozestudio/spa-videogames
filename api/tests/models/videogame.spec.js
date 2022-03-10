@@ -12,7 +12,7 @@ describe("Videogame model", () => {
     describe("Post Videogame", () => {
       it("Debería devolver un error si no se le pasa ningún parametro", (done) => {
         Videogame.create({})
-          .then(() => done(new Error("It requires a valid name")))
+          .then(() => done(new Error("It requires all params")))
           .catch(() => done());
       });
       it("Debería crear exitosamente un nuevo juego con todos los parametros", (done) => {
@@ -43,8 +43,8 @@ describe("Videogame model", () => {
             "https://image.api.playstation.com/vulcan/img/cfn/11307x4B5WLoVoIUtdewG4uJ_YuDRTwBxQy0qP8ylgazLLc01PBxbsFG1pGOWmqhZsxnNkrU3GXbdXIowBAstzlrhtQ4LCI4.png",
           genres: ["RPG", "Platformer"],
         })
-          .then(() => done())
-          .catch(() => done(new Error("It requires a valid name")));
+          .then(() => done(new Error("It requires a valid description")))
+          .catch(() => done());
       });
     });
     describe("rating", () => {
@@ -76,8 +76,8 @@ describe("Videogame model", () => {
           image: "",
           genres: ["RPG", "Platformer"],
         })
-          .then(() => done())
-          .catch(() => done(new Error("It requires a valid image")));
+          .then(() => done(new Error("It requires a valid image")))
+          .catch(() => done());
       });
     });
   });

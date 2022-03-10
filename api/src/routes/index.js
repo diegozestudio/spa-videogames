@@ -71,7 +71,7 @@ router.post("/videogame", async (req, res) => {
   } = req.body;
   if (
     name &&
-    description &&
+    description.length &&
     released &&
     rating &&
     image &&
