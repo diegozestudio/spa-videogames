@@ -8,9 +8,9 @@ to {
 `;
 
 export const Loading = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  position: absolute;
+  left: 46%;
+  top: 40%;
   width: 10rem;
   height: 10rem;
   border: 3px solid #333;
@@ -20,6 +20,7 @@ export const Loading = styled.div`
 `;
 
 export const LinktoHome = styled(Link)`
+  position: relative;
   top: 40vh;
   left: 60vw;
   padding: 1rem 3rem;
@@ -32,7 +33,6 @@ export const LinktoHome = styled(Link)`
   color: #fff;
   letter-spacing: 3px;
   box-shadow: 6px 0px 0px #f0f0f2;
-  position: relative;
   transition: 0.25s;
   &:hover {
     background: linear-gradient(45deg, transparent 5%, #17204d 5%);

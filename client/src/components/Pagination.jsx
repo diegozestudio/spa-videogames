@@ -99,32 +99,32 @@ export default function Paginado({ videogames }) {
     <>
       <ContCards>{renderData(currentItems)}</ContCards>
       <ul className={styles.pageNumbers}>
-        <li>
-          <button
-            onClick={handlePrevbtn}
-            disabled={currentPage === pages[0] ? true : false}
-          >
-            Prev
-          </button>
-        </li>
+        <button
+          onClick={handlePrevbtn}
+          disabled={currentPage === pages[0] ? true : false}
+          className={styles.prev}
+        >
+          Prev
+        </button>
         {pageDecrementBtn}
         {renderPageNumbers}
         {pageIncrementBtn}
-        <li>
-          <button
-            onClick={handleNextbtn}
-            disabled={currentPage === pages[pages.length - 1] ? true : false}
-          >
-            Next
-          </button>
-        </li>
+        <button
+          onClick={handleNextbtn}
+          disabled={currentPage === pages[pages.length - 1] ? true : false}
+          className={styles.next}
+        >
+          Next
+        </button>
       </ul>
-      <button onClick={handleLoadLess} className="loadmore">
-        Mostrar menos
-      </button>
-      <button onClick={handleLoadMore} className="loadmore">
-        Mostrar más
-      </button>
+      <div className={styles.contloaders}>
+        <button onClick={handleLoadLess} className={styles.loadmore}>
+          Mostrar menos
+        </button>
+        <button onClick={handleLoadMore} className={styles.loadmore}>
+          Mostrar más
+        </button>
+      </div>
     </>
   );
 }

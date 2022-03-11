@@ -18,6 +18,7 @@ import Pagination from "./Pagination";
 import SearchBar from "./SearchBar";
 import {
   DivNewGame,
+  HomeLoading,
   HomeSt,
   LinkNewGame,
   Loading,
@@ -88,7 +89,7 @@ export default function Home() {
   }
 
   const handleShowNav = () => {
-    dispatch(setNav(true));
+    nav ? dispatch(setNav(false)) : dispatch(setNav(true));
   };
 
   const handleHideNav = () => {
@@ -163,14 +164,7 @@ export default function Home() {
           </NavBottomRight>
         </NavBot>
       )}
-      {loading ? (
-        <>
-          <h2>Cargando los Videogames...</h2>
-          <Loading />
-        </>
-      ) : (
-        <Pagination videogames={videogames} />
-      )}
+      {loading ? <Loading /> : <Pagination videogames={videogames} />}
     </>
   );
 }
