@@ -8,6 +8,7 @@ import {
   setLoading,
 } from "../redux/actions";
 import load from "../assets/loading.gif";
+import { Loading } from "./styles";
 
 const validate = (input) => {
   let errors = {};
@@ -178,10 +179,10 @@ export default function VideogameCreate() {
         </div>
         {errors.rating && <span>{errors.rating}</span>}
         {loading ? (
-          <>
-            <h2>Cargando Géneros y Plataformas</h2>
-            <img src={load} alt="" />
-          </>
+          <div>
+            <Loading />
+            Cargando Géneros y Plataformas
+          </div>
         ) : (
           <>
             <label style={{ fontWeight: "bold" }}>Genres: </label>

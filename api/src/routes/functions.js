@@ -25,8 +25,6 @@ const getApiInfo = async () => {
       allGames = [...allGames, ...apiInfo];
       i++;
     }
-    // console.log(allGames);
-    // console.log(allGames.length);
     return allGames;
   } catch (err) {
     console.log("entré al catch :(", err);

@@ -162,3 +162,75 @@ export const SelectCosas = styled.div`
   background-color: #fff;
   border-radius: 45px;
 `;
+
+export const ContDetail = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  align-items: center;
+  text-align: center;
+  margin: 2rem auto;
+  width: 1200px;
+  border-radius: 5rem;
+  /* background-color: #333; */
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.05) 0%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  padding: 2rem 0;
+`;
+
+export const TitleDetail = styled.div`
+  font-size: 3rem;
+`;
+
+export const ImageDetail = styled.img`
+  width: 1200px;
+  height: 600px;
+  object-fit: cover;
+  object-position: top;
+`;
+
+export const DetailDetail = styled.div`
+  font-family: "Poppins";
+  font-weight: 300;
+  font-size: 0.75rem;
+  color: rgba(255, 255, 255, 0.8);
+  padding: 1rem 5rem;
+`;
+
+export const BoxShadow = styled.div`
+  font-family: "Poppins";
+  font-weight: 300;
+  background: linear-gradient(
+    0deg,
+    rgba(255, 255, 255, 0.05) 0%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  color: #fff;
+  padding: 10px 20px;
+  border-radius: 25px;
+`;
+
+export const SubTitleDetail = styled.div`
+  border: 1px solid #fff;
+  padding: 10px 20px;
+  border-radius: 25px;
+  font-family: "Poppins";
+`;
+
+export const LineDetail = styled.div`
+  display: flex;
+  gap: 1rem;
+`;
+
+export const LinkDetail = styled(Link)`
+  text-decoration: none;
+  border: 1px solid #fff;
+  padding: 10px 20px;
+  border-radius: 25px;
+  font-family: "Poppins";
+  background-color: #fff;
+  color: #000;
+`;

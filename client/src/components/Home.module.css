@@ -41,3 +41,16 @@
   height: 30px;
   margin-right: 2px;
 }
+
+.divload {
+  font-family: "Poppins";
+  font-weight: 400;
+  color: #333;
+}
+
+.contloading {
+  display: flex;
+  height: 750px;
+  justify-content: center;
+  align-items: center;
+}
