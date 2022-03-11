@@ -11,6 +11,7 @@ export const ORDER_BY_RATING = "ORDER_BY_RATING";
 export const GET_NAME_VG = "GET_NAME_VG";
 export const GET_DETAIL = "GET_DETAIL";
 export const POST_VG = "POST_VG";
+export const SET_NAV = "SET_NAV";
 
 export function getVideogames() {
   return async function (dispatch) {
@@ -95,4 +96,8 @@ export function postVideogame(payload) {
     const json = await axios.post("http://localhost:3001/videogame", payload);
     return json;
   };
+}
+
+export function setNav(payload) {
+  return { type: SET_NAV, payload };
 }

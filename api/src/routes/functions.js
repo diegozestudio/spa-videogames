@@ -19,6 +19,7 @@ const getApiInfo = async () => {
           genres: e.genres.map((g) => g.name),
           platforms: e.platforms.map((p) => p.platform.name),
           rating: e.rating,
+          released: e.released,
         };
       });
       allGames = [...allGames, ...apiInfo];

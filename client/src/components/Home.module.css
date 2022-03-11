@@ -6,6 +6,7 @@
 
 .hamburger {
   height: 30px;
+  cursor: pointer;
 }
 
 .reload {
@@ -36,6 +37,7 @@ select {
 }
 
 .flechitarriba {
+  cursor: pointer;
   height: 30px;
   margin-right: 2px;
 }

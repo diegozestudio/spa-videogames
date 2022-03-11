@@ -34,6 +34,7 @@ export const LinktoHome = styled(Link)`
   letter-spacing: 3px;
   box-shadow: 6px 0px 0px #f0f0f2;
   position: relative;
+  transition: 0.25s;
   &:hover {
     background: linear-gradient(45deg, transparent 5%, #17204d 5%);
     box-shadow: 6px 0px 0px #a60000;
@@ -69,7 +70,6 @@ export const ContGenres = styled.div`
   align-items: center;
   padding: 5px 0;
   width: 250px;
-  /* height: 45px; */
   border-radius: 0px 0px 20px 20px;
 `;
 
@@ -108,13 +108,7 @@ export const NavTop = styled.div`
   justify-content: space-between;
   height: 75px;
 
-  background: radial-gradient(
-    100% 21813.02% at 0% 0%,
-    #17204c 3.05%,
-    #a60000 100%
-  );
-  /* warning: gradient uses a rotation that is not supported by CSS and may not behave as expected */
-  box-shadow: 0px 3px 8px rgba(0, 0, 0, 0.25);
+  background: linear-gradient(180deg, #a60000 0%, #0b0b0b 100%);
 `;
 
 export const NavTopRight = styled.div`
@@ -139,13 +133,7 @@ export const NavBot = styled.div`
   align-items: center;
   justify-content: space-between;
   height: 50px;
-  background: radial-gradient(
-    100% 21813.02% at 0% 0%,
-    #17204c 3.05%,
-    #a60000 100%
-  );
-  /* warning: gradient uses a rotation that is not supported by CSS and may not behave as expected */
-  box-shadow: 0px 3px 8px rgba(0, 0, 0, 0.25);
+  background: linear-gradient(0deg, #0b0b0b 3.05%, #17204c 100%);
 `;
 
 export const DivNewGame = styled.div`

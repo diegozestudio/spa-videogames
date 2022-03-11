@@ -11,6 +11,7 @@ import {
   GET_NAME_VG,
   GET_DETAIL,
   POST_VG,
+  SET_NAV,
 } from "../actions";
 
 const initialState = {
@@ -20,6 +21,7 @@ const initialState = {
   detail: {},
   currentPage: 1,
   loading: true,
+  nav: false,
 };
 
 function rootReducer(state = initialState, action) {
@@ -151,6 +153,11 @@ function rootReducer(state = initialState, action) {
     case POST_VG:
       return {
         ...state,
+      };
+    case SET_NAV:
+      return {
+        ...state,
+        nav: action.payload,
       };
     default:
       return state;

@@ -12,6 +12,7 @@ import {
   orderByRating,
   setCurrentPage,
   setLoading,
+  setNav,
 } from "../redux/actions";
 import Pagination from "./Pagination";
 import SearchBar from "./SearchBar";
@@ -38,6 +39,7 @@ import flecharriba from "../assets/angle-up.svg";
 export default function Home() {
   const dispatch = useDispatch();
   const loading = useSelector((state) => state.loading);
+  const nav = useSelector((state) => state.nav);
   const genres = useSelector((state) => state.genres);
   let videogames = useSelector((state) => state.videogames);
 
@@ -45,7 +47,7 @@ export default function Home() {
     dispatch(setLoading(true));
     dispatch(getVideogames());
     dispatch(getGenres());
-  }, []);
+  }, [dispatch]);
 
   const handleReload = (e) => {
     e.preventDefault();
@@ -85,6 +87,14 @@ export default function Home() {
     dispatch(setCurrentPage(1));
   }
 
+  const handleShowNav = () => {
+    dispatch(setNav(true));
+  };
+
+  const handleHideNav = () => {
+    dispatch(setNav(false));
+  };
+
   return (
     <>
       <NavTop>
@@ -99,47 +109,57 @@ export default function Home() {
               <img src={gamepad} className={styles.gamepad} />
             </DivNewGame>
           </LinkNewGame>
-          <img src={menu} className={styles.hamburger} />
+          <img
+            src={menu}
+            className={styles.hamburger}
+            onClick={handleShowNav}
+          />
         </NavTopRight>
       </NavTop>
-      <NavBot>
-        <img onClick={handleReload} src={reload} className={styles.reload} />
-        <NavBottomRight>
-          <SelectCosas>
-            <select onChange={handleSort}>
-              <option>Orden</option>
-              <option value="a-z">A - Z</option>
-              <option value="z-a">Z - A</option>
-              <option value="mayor-rating">Mayor Rating</option>
-              <option value="menor-rating">Menor Rating</option>
-            </select>
-            <img src={flechabajo} className={styles.flechitabajo} />
-          </SelectCosas>
-          <SelectCosas>
-            <select onChange={handleGenres}>
-              <option>Géneros</option>
-              {genres.map((g) => {
-                return (
-                  <option value={g.name} key={g.name}>
-                    {g.name}
-                  </option>
-                );
-              })}
-            </select>
-            <img src={flechabajo} className={styles.flechitabajo} />
-          </SelectCosas>
-          <SelectCosas>
-            <select onChange={handleFilterCreated}>
-              <option>Origen</option>
-              <option value="all">Todos</option>
-              <option value="db">Creados</option>
-              <option value="api">Existentes</option>
-            </select>
-            <img src={flechabajo} className={styles.flechitabajo} />
-          </SelectCosas>
-          <img src={flecharriba} className={styles.flechitarriba} />
-        </NavBottomRight>
-      </NavBot>
+      {nav && (
+        <NavBot>
+          <img onClick={handleReload} src={reload} className={styles.reload} />
+          <NavBottomRight>
+            <SelectCosas>
+              <select onChange={handleSort}>
+                <option>Orden</option>
+                <option value="a-z">A - Z</option>
+                <option value="z-a">Z - A</option>
+                <option value="mayor-rating">Mayor Rating</option>
+                <option value="menor-rating">Menor Rating</option>
+              </select>
+              <img src={flechabajo} className={styles.flechitabajo} />
+            </SelectCosas>
+            <SelectCosas>
+              <select onChange={handleGenres}>
+                <option>Géneros</option>
+                {genres.map((g) => {
+                  return (
+                    <option value={g.name} key={g.name}>
+                      {g.name}
+                    </option>
+                  );
+                })}
+              </select>
+              <img src={flechabajo} className={styles.flechitabajo} />
+            </SelectCosas>
+            <SelectCosas>
+              <select onChange={handleFilterCreated}>
+                <option>Origen</option>
+                <option value="all">Todos</option>
+                <option value="db">Creados</option>
+                <option value="api">Existentes</option>
+              </select>
+              <img src={flechabajo} className={styles.flechitabajo} />
+            </SelectCosas>
+            <img
+              src={flecharriba}
+              className={styles.flechitarriba}
+              onClick={handleHideNav}
+            />
+          </NavBottomRight>
+        </NavBot>
+      )}
       {loading ? (
         <>
           <h2>Cargando los Videogames...</h2>

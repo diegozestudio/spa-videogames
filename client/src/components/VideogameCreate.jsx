@@ -46,6 +46,15 @@ export default function VideogameCreate() {
   const juegos = useSelector((state) => state.allVideogames);
   const allPlatforms = juegos.map((c) => c.platforms);
   const platforms = [...new Set(allPlatforms.flat())];
+  let btndisabled = !(
+    input.name &&
+    input.description &&
+    input.image &&
+    input.released &&
+    input.rating &&
+    input.platforms.length &&
+    input.genres.length
+  );
 
   const handleChange = (e) => {
     setInput({
@@ -61,6 +70,7 @@ export default function VideogameCreate() {
   };
 
   const handleDeleteGenres = (e) => {
+    e.preventDefault();
     setInput({
       ...input,
       genres: input.genres.filter((c) => c !== e.target.name),
@@ -73,6 +83,7 @@ export default function VideogameCreate() {
     });
   };
   const handleDeletePlatform = (e) => {
+    e.preventDefault();
     setInput({
       ...input,
       platforms: input.platforms.filter((c) => c !== e.target.name),
@@ -191,7 +202,6 @@ export default function VideogameCreate() {
                 </button>
               </div>
             ))}
-            <br />
             <label style={{ fontWeight: "bold" }}>Platforms: </label>
             <select onChange={handleSelectPlatforms}>
               {platforms.map((platform) => {
@@ -212,21 +222,7 @@ export default function VideogameCreate() {
             ))}
           </>
         )}
-        <br />
-        <br />
-        {input.name &&
-        input.description &&
-        input.image &&
-        input.released &&
-        input.rating &&
-        input.platforms.length &&
-        input.genres.length ? (
-          <button type="submit">Crear Videogame</button>
-        ) : (
-          <button type="submit" disabled={true}>
-            Crear Videogame
-          </button>
-        )}
+        <button disabled={btndisabled}>Crear Videogame</button>
       </form>
     </div>
   );
