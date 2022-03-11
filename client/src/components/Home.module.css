@@ -23,11 +23,11 @@
   height: 30px;
 }
 
-select {
+.selectfiltros {
   -webkit-appearance: none;
   background-color: transparent;
   border: none;
-  color: #17204d;
+  color: #000;
   font-family: "Poppins";
   font-weight: 400;
 }

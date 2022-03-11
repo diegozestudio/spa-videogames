@@ -121,7 +121,7 @@ export default function Home() {
           <img onClick={handleReload} src={reload} className={styles.reload} />
           <NavBottomRight>
             <SelectCosas>
-              <select onChange={handleSort}>
+              <select onChange={handleSort} className={styles.selectfiltros}>
                 <option>Orden</option>
                 <option value="a-z">A - Z</option>
                 <option value="z-a">Z - A</option>
@@ -131,7 +131,7 @@ export default function Home() {
               <img src={flechabajo} className={styles.flechitabajo} />
             </SelectCosas>
             <SelectCosas>
-              <select onChange={handleGenres}>
+              <select onChange={handleGenres} className={styles.selectfiltros}>
                 <option>Géneros</option>
                 {genres.map((g) => {
                   return (
@@ -144,7 +144,10 @@ export default function Home() {
               <img src={flechabajo} className={styles.flechitabajo} />
             </SelectCosas>
             <SelectCosas>
-              <select onChange={handleFilterCreated}>
+              <select
+                onChange={handleFilterCreated}
+                className={styles.selectfiltros}
+              >
                 <option>Origen</option>
                 <option value="all">Todos</option>
                 <option value="db">Creados</option>

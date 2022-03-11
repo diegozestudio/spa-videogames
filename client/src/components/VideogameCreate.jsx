@@ -170,7 +170,7 @@ export default function VideogameCreate() {
         <div>
           <label>Rating</label>
           <input
-            type="number"
+            type="text"
             value={input.rating}
             name="rating"
             onChange={handleChange}

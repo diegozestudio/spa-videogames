@@ -19,13 +19,14 @@ export default function SearchBar() {
     setName("");
   };
   return (
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit} className={styles.formsearch}>
       <div className={styles.bordesearch}>
         <input
           type="text"
           placeholder="Buscar..."
           value={name}
           onChange={handleChange}
+          className={styles.inputsearch}
         />
         <input src={search} type="image" className={styles.lupita} />
       </div>

@@ -1,6 +1,5 @@
 import styled, { keyframes } from "styled-components";
 import { Link } from "react-router-dom";
-import SearchBar from "./SearchBar";
 
 const spin = keyframes`
 to {
@@ -93,7 +92,7 @@ export const ContCards = styled.div`
   justify-content: center;
   margin: 50px 200px;
   column-gap: 40px;
-  row-gap: 20px;
+  row-gap: 30px;
 `;
 
 export const CardSt = styled.div`
@@ -107,8 +106,7 @@ export const NavTop = styled.div`
   align-items: center;
   justify-content: space-between;
   height: 75px;
-
-  background: linear-gradient(180deg, #a60000 0%, #0b0b0b 100%);
+  background: linear-gradient(0deg, #a60000 0%, #0b0b0b 100%);
 `;
 
 export const NavTopRight = styled.div`
@@ -132,8 +130,12 @@ export const NavBot = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  height: 50px;
-  background: linear-gradient(0deg, #0b0b0b 3.05%, #17204c 100%);
+  height: 55px;
+  background: linear-gradient(
+    0deg,
+    rgba(255, 255, 255, 0.05) 0%,
+    rgba(255, 255, 255, 0) 100%
+  );
 `;
 
 export const DivNewGame = styled.div`
@@ -158,5 +160,5 @@ export const SelectCosas = styled.div`
   align-items: center;
   padding: 8px 20px;
   background-color: #fff;
-  border-radius: 15px;
+  border-radius: 45px;
 `;
