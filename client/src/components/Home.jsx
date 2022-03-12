@@ -72,7 +72,12 @@ export default function Home() {
   };
 
   const handleGenres = (e) => {
-    dispatch(filterByGenre(e.target.value));
+    if (e.target.value === "generos") {
+      dispatch(setLoading(true));
+      dispatch(getVideogames());
+    } else {
+      dispatch(filterByGenre(e.target.value));
+    }
   };
 
   function handleSort(e) {
@@ -84,6 +89,10 @@ export default function Home() {
       e.target.value === "menor-rating"
     ) {
       dispatch(orderByRating(e.target.value));
+    }
+    if (e.target.value === "orden") {
+      dispatch(setLoading(true));
+      dispatch(getVideogames());
     }
     dispatch(setCurrentPage(1));
   }
@@ -123,7 +132,7 @@ export default function Home() {
           <NavBottomRight>
             <SelectCosas>
               <select onChange={handleSort} className={styles.selectfiltros}>
-                <option>Orden</option>
+                <option value="orden">Orden</option>
                 <option value="a-z">A - Z</option>
                 <option value="z-a">Z - A</option>
                 <option value="mayor-rating">Mayor Rating</option>
@@ -133,7 +142,7 @@ export default function Home() {
             </SelectCosas>
             <SelectCosas>
               <select onChange={handleGenres} className={styles.selectfiltros}>
-                <option>Géneros</option>
+                <option value="generos">Géneros</option>
                 {genres.map((g) => {
                   return (
                     <option value={g.name} key={g.name}>
@@ -149,7 +158,7 @@ export default function Home() {
                 onChange={handleFilterCreated}
                 className={styles.selectfiltros}
               >
-                <option>Origen</option>
+                <option value="all">Origen</option>
                 <option value="all">Todos</option>
                 <option value="db">Creados</option>
                 <option value="api">Existentes</option>

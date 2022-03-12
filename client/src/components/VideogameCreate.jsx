@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link, useHistory } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import {
   getGenres,
   getVideogames,
@@ -18,7 +18,7 @@ import {
   InputForm,
   ContSelecciones,
   SelectForm,
-  LinkDetail,
+  LinkVolver,
   BtnEliminar,
   Equis,
   Ffform,
@@ -81,6 +81,7 @@ export default function VideogameCreate() {
     input.platforms.length &&
     input.genres.length
   );
+  const history = useHistory();
 
   const handleChange = (e) => {
     setInput({
@@ -164,6 +165,8 @@ export default function VideogameCreate() {
       genres: [],
       platforms: [],
     });
+    alert("Videogame creado con exito");
+    history.push("/home");
   };
 
   return (
@@ -242,7 +245,7 @@ export default function VideogameCreate() {
         </DivSelectForm>
         <ContSelecciones>
           {input.genres.map((g) => (
-            <BtnEliminar name={g} onClick={handleDeleteGenres}>
+            <BtnEliminar name={g} onClick={handleDeleteGenres} key={g}>
               {g}
               <Equis>X</Equis>
             </BtnEliminar>
@@ -264,7 +267,7 @@ export default function VideogameCreate() {
         </DivSelectForm>
         <ContSelecciones>
           {input.platforms.map((p) => (
-            <BtnEliminar name={p} onClick={handleDeletePlatform}>
+            <BtnEliminar name={p} onClick={handleDeletePlatform} key={p}>
               {p}
               <Equis>X</Equis>
             </BtnEliminar>
@@ -273,7 +276,7 @@ export default function VideogameCreate() {
         {errors.platforms && <ErrorForm>{errors.platforms}</ErrorForm>}
         <CrearForm disabled={btndisabled}>Crear Videogame</CrearForm>
       </Ffform>
-      <LinkDetail to="/home">Volver</LinkDetail>
+      <LinkVolver to="/home">Volver</LinkVolver>
     </ContForm>
   );
 }

@@ -307,6 +307,8 @@ export const CrearForm = styled.button`
   background-color: #fff;
   color: #000;
   transition: 0.25s;
+  margin: 1rem 0 0;
+  cursor: pointer;
   &:enabled:hover {
     box-shadow: 0px 0px 11px rgba(255, 255, 255, 0.4);
   }
@@ -356,4 +358,13 @@ export const Equis = styled.span`
 export const Ffform = styled.form`
   display: flex;
   gap: 0.5rem;
+`;
+
+export const LinkVolver = styled(Link)`
+  text-decoration: none;
+  font-family: "Poppins";
+  font-weight: 300;
+
+  color: #fff;
+  opacity: 75%;
 `;
