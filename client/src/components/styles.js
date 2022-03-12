@@ -245,18 +245,19 @@ export const ContForm = styled.div`
   gap: 1rem;
   align-items: center;
   text-align: center;
-  margin: 2rem auto;
-  width: 1200px;
+  margin: 4rem auto;
+  width: 800px;
   border-radius: 5rem;
   background: linear-gradient(
     180deg,
     rgba(255, 255, 255, 0.05) 0%,
     rgba(255, 255, 255, 0) 100%
   );
-  padding: 2rem 0;
+  padding: 4rem 0;
 `;
 
 export const InputForm = styled.input`
+  width: 500px;
   background-color: transparent;
   color: #fff;
   font-family: "Poppins";
@@ -273,12 +274,14 @@ export const DivInputForm = styled.div`
 `;
 
 export const SelectForm = styled.select`
+  width: 500px;
   background-color: transparent;
   font-family: "Poppins";
   font-style: normal;
   font-weight: 300;
   border: none;
   outline: none;
+  cursor: pointer;
 `;
 
 export const DivSelectForm = styled.div`
@@ -314,4 +317,43 @@ export const CrearForm = styled.button`
     opacity: 25%;
     box-shadow: 0px 0px 11px rgba(166, 0, 0, 1);
   }
+`;
+
+export const ContSelecciones = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  width: 600px;
+  gap: 1rem;
+  margin: auto;
+`;
+
+export const BtnEliminar = styled.button`
+  background-color: transparent;
+  border: none;
+  color: #fff;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  font-family: "Poppins";
+  font-weight: 300;
+  background: linear-gradient(
+    0deg,
+    rgba(255, 255, 255, 0.05) 0%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  padding: 10px 20px;
+  border-radius: 25px;
+`;
+
+export const Equis = styled.span`
+  color: #fff;
+  font-family: "Poppins";
+  font-weight: 600;
+`;
+
+export const Ffform = styled.form`
+  display: flex;
+  gap: 0.5rem;
 `;

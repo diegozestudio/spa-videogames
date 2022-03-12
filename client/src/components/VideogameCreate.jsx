@@ -16,8 +16,12 @@ import {
   DivSelectForm,
   ErrorForm,
   InputForm,
-  OptionForm,
+  ContSelecciones,
   SelectForm,
+  LinkDetail,
+  BtnEliminar,
+  Equis,
+  Ffform,
 } from "./styles";
 
 const validurl = (url) => {
@@ -164,7 +168,7 @@ export default function VideogameCreate() {
 
   return (
     <ContForm>
-      <form onSubmit={handleSubmit} className={styles.cont}>
+      <Ffform onSubmit={handleSubmit} className={styles.cont}>
         <label htmlFor="nameID"></label>
         <DivInputForm>
           <InputForm
@@ -236,14 +240,14 @@ export default function VideogameCreate() {
             })}
           </SelectForm>
         </DivSelectForm>
-        {input.genres.map((g) => (
-          <div>
-            <p>{g}</p>
-            <button name={g} onClick={handleDeleteGenres}>
-              X
-            </button>
-          </div>
-        ))}
+        <ContSelecciones>
+          {input.genres.map((g) => (
+            <BtnEliminar name={g} onClick={handleDeleteGenres}>
+              {g}
+              <Equis>X</Equis>
+            </BtnEliminar>
+          ))}
+        </ContSelecciones>
         {errors.genres && <ErrorForm>{errors.genres}</ErrorForm>}
         <label style={{ fontWeight: "bold" }}></label>
         <DivSelectForm>
@@ -258,20 +262,18 @@ export default function VideogameCreate() {
             })}
           </SelectForm>
         </DivSelectForm>
-        {input.platforms.map((p) => (
-          <div>
-            <p>{p}</p>
-            <button name={p} onClick={handleDeletePlatform}>
-              X
-            </button>
-          </div>
-        ))}
+        <ContSelecciones>
+          {input.platforms.map((p) => (
+            <BtnEliminar name={p} onClick={handleDeletePlatform}>
+              {p}
+              <Equis>X</Equis>
+            </BtnEliminar>
+          ))}
+        </ContSelecciones>
         {errors.platforms && <ErrorForm>{errors.platforms}</ErrorForm>}
         <CrearForm disabled={btndisabled}>Crear Videogame</CrearForm>
-      </form>
-      <Link to="/home">
-        <button>Volver</button>
-      </Link>
+      </Ffform>
+      <LinkDetail to="/home">Volver</LinkDetail>
     </ContForm>
   );
 }
