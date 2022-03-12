@@ -364,7 +364,6 @@ export const LinkVolver = styled(Link)`
   text-decoration: none;
   font-family: "Poppins";
   font-weight: 300;
-
   color: #fff;
   opacity: 75%;
 `;

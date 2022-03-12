@@ -11,48 +11,47 @@ const router = Router();
 // Configurar los routers
 // Ejemplo: router.use('/auth', authRouter);
 
-router.get("/videogames", async (req, res) => {
+router.get("/videogames", (req, res) => {
   try {
     const name = req.query.name;
-    let charactersTotal = await getAllGames();
-    if (name) {
-      let characterName = await charactersTotal.filter((c) =>
-        c.name.toLowerCase().includes(name.toLowerCase())
-      );
-      characterName.length
-        ? res.status(200).send(characterName)
-        : res.status(400).send("No existe el videogame :(");
-    } else {
-      res.status(200).send(charactersTotal);
-    }
+    getAllGames().then((r) => {
+      if (name) {
+        let characterName = r.filter((c) =>
+          c.name.toLowerCase().includes(name.toLowerCase())
+        );
+        characterName.length
+          ? res.status(200).send(characterName)
+          : res.status(400).send("No existe el videogame :(");
+      } else {
+        res.status(200).send(r);
+      }
+    });
   } catch (err) {
     console.log("entré al catch :(", err);
   }
 });
 
-router.get("/api_videogames", async (req, res) => {
-  let charactersApi = await getApiInfo();
-  res.status(200).send(charactersApi);
+router.get("/api_videogames", (req, res) => {
+  getApiInfo().then((r) => res.status(200).send(r));
 });
 
-router.get("/db_videogames", async (req, res) => {
-  let charactersDB = await getDbInfo();
-  res.status(200).send(charactersDB);
+router.get("/db_videogames", (req, res) => {
+  getDbInfo().then((r) => res.send(200, r));
 });
 
-router.get("/genres", async (req, res) => {
+router.get("/genres", (req, res) => {
   try {
-    const genresApi = await getApiInfo();
-    const genres = genresApi.map((c) => c.genres);
-    // console.log([...new Set(genres.flat())]);
-    const genresEach = [...new Set(genres.flat())];
-    genresEach.forEach((genre) => {
-      Genre.findOrCreate({
-        where: { name: genre },
-      });
-    });
-    const allGenres = await Genre.findAll();
-    res.send(allGenres);
+    getApiInfo()
+      .then((r) => r.map((c) => c.genres))
+      .then((r) => [...new Set(r.flat())])
+      .then((r) =>
+        r.forEach((genre) => {
+          Genre.findOrCreate({
+            where: { name: genre },
+          });
+        })
+      );
+    Genre.findAll().then((r) => res.send(r));
   } catch (err) {
     console.log("entré al catch :(", err);
   }

@@ -1,5 +1,5 @@
 import React from "react";
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import {
@@ -11,22 +11,21 @@ import {
   orderByName,
   orderByRating,
   setCurrentPage,
+  setError,
   setLoading,
   setNav,
 } from "../redux/actions";
 import Pagination from "./Pagination";
 import SearchBar from "./SearchBar";
+import Error from "./Error";
 import {
   DivNewGame,
-  HomeLoading,
-  HomeSt,
   LinkNewGame,
   Loading,
   NavBot,
   NavBottomRight,
   NavTop,
   NavTopRight,
-  NewSearchBar,
   SelectCosas,
 } from "./styles";
 import joystick from "../assets/joystick.svg";
@@ -43,7 +42,7 @@ export default function Home() {
   const nav = useSelector((state) => state.nav);
   const genres = useSelector((state) => state.genres);
   let videogames = useSelector((state) => state.videogames);
-
+  const error = useSelector((state) => state.error);
   useEffect(() => {
     dispatch(setLoading(true));
     dispatch(getVideogames());
@@ -52,6 +51,7 @@ export default function Home() {
 
   const handleReload = (e) => {
     e.preventDefault();
+    dispatch(setError(false));
     dispatch(setLoading(true));
     dispatch(getVideogames());
   };
@@ -173,7 +173,13 @@ export default function Home() {
           </NavBottomRight>
         </NavBot>
       )}
-      {loading ? <Loading /> : <Pagination videogames={videogames} />}
+      {error ? (
+        <Error />
+      ) : loading ? (
+        <Loading />
+      ) : (
+        <Pagination videogames={videogames} />
+      )}
     </>
   );
 }

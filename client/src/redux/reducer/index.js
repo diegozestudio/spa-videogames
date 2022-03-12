@@ -12,6 +12,7 @@ import {
   GET_DETAIL,
   POST_VG,
   SET_NAV,
+  SET_ERROR,
 } from "../actions";
 
 const initialState = {
@@ -22,6 +23,7 @@ const initialState = {
   currentPage: 1,
   loading: true,
   nav: false,
+  error: false,
 };
 
 function rootReducer(state = initialState, action) {
@@ -32,6 +34,12 @@ function rootReducer(state = initialState, action) {
         allVideogames: action.payload,
         videogames: action.payload,
         loading: false,
+      };
+    case SET_ERROR:
+      return {
+        ...state,
+        loading: false,
+        error: action.payload,
       };
     case GET_API_VIDEOGAMES:
       return {
@@ -54,7 +62,6 @@ function rootReducer(state = initialState, action) {
       return {
         ...state,
         genres: action.payload,
-        loading: false,
       };
     case FILTER_BY_GENRE:
       const gamesFiltered = state.allVideogames.filter((g) =>

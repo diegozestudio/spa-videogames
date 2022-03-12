@@ -1,12 +1,7 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
-import {
-  getGenres,
-  getVideogames,
-  postVideogame,
-  setLoading,
-} from "../redux/actions";
+import { getGenres, getVideogames, postVideogame } from "../redux/actions";
 
 import styles from "./VideogameCreate.module.css";
 import {
