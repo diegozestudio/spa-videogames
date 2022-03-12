@@ -59,26 +59,8 @@ router.get("/genres", async (req, res) => {
 });
 
 router.post("/videogame", async (req, res) => {
-  let {
-    name,
-    description,
-    released,
-    rating,
-    platforms,
-    image,
-    createdInDB,
-    genres,
-  } = req.body;
-  if (
-    name &&
-    description.length &&
-    released &&
-    rating &&
-    image &&
-    platforms.length &&
-    genres.length
-  ) {
-    let newVideogame = await Videogame.create({
+  try {
+    let {
       name,
       description,
       released,
@@ -86,14 +68,37 @@ router.post("/videogame", async (req, res) => {
       platforms,
       image,
       createdInDB,
-    });
-    let genreDb = await Genre.findAll({
-      where: { name: genres },
-    });
-    newVideogame.addGenre(genreDb);
-    res.send("Videogame creado con exito");
-  } else {
-    res.status(400).send("Faltaron datos para crear el videogame");
+      genres,
+    } = req.body;
+    if (
+      name &&
+      description.length &&
+      released &&
+      rating &&
+      image &&
+      platforms.length &&
+      genres.length
+    ) {
+      let newVideogame = await Videogame.create({
+        name,
+        description,
+        released,
+        rating,
+        platforms,
+        image,
+        createdInDB,
+      });
+      let genreDb = await Genre.findAll({
+        where: { name: genres },
+      });
+      newVideogame.addGenre(genreDb);
+      res.send("Videogame creado con exito");
+    } else {
+      res.status(400).send("Faltaron datos para crear el videogame");
+    }
+  } catch (err) {
+    console.log("entre al catch del post", err);
+    res.status(400).send(err);
   }
 });
 
