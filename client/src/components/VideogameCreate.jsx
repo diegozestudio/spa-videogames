@@ -1,14 +1,36 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import {
   getGenres,
   getVideogames,
   postVideogame,
   setLoading,
 } from "../redux/actions";
-import load from "../assets/loading.gif";
-import { Loading } from "./styles";
+
+import styles from "./VideogameCreate.module.css";
+import {
+  ContForm,
+  CrearForm,
+  DivInputForm,
+  DivSelectForm,
+  ErrorForm,
+  InputForm,
+  OptionForm,
+  SelectForm,
+} from "./styles";
+
+const validurl = (url) => {
+  return /^(ftp|http|https):\/\/[^ "]+$/.test(url);
+};
+
+const validnum = (num) => {
+  if (num.match(/^(?!0\d)\d*(\.\d+)?$/)) {
+    return true;
+  } else {
+    return false;
+  }
+};
 
 const validate = (input) => {
   let errors = {};
@@ -16,13 +38,13 @@ const validate = (input) => {
     errors.name = "Se requiere un Nombre";
   } else if (!input.description) {
     errors.description = "Se requiere una Descripción";
-  } else if (!input.image) {
-    errors.image = "Se requiere una Imagen";
+  } else if (!validurl(input.image)) {
+    errors.image = "No es una url valida";
   } else if (!input.released) {
     errors.released = "Se requiere una Fecha de Lanzamiento";
-  } else if (!input.rating) {
-    errors.rating = "Se requiere un Rating";
-  } else if (!input.genres[0]) {
+  } else if (!validnum(input.rating)) {
+    errors.rating = "No es un rating valido";
+  } else if (input.genres.length === 0) {
     errors.genres = "Se requiere al menos un Género";
   } else if (!input.platforms[0]) {
     errors.platforms = "Se requiere al menos una Plataforma";
@@ -32,7 +54,6 @@ const validate = (input) => {
 
 export default function VideogameCreate() {
   const dispatch = useDispatch();
-  const loading = useSelector((state) => state.loading);
   const genres = useSelector((state) => state.genres);
   const [errors, setErrors] = useState({});
   const [input, setInput] = useState({
@@ -76,12 +97,22 @@ export default function VideogameCreate() {
       ...input,
       genres: input.genres.filter((c) => c !== e.target.name),
     });
+    setErrors(
+      validate({
+        ...input,
+      })
+    );
   };
   const handleSelectGenres = (e) => {
     setInput({
       ...input,
       genres: [...input.genres, e.target.value],
     });
+    setErrors(
+      validate({
+        ...input,
+      })
+    );
   };
   const handleDeletePlatform = (e) => {
     e.preventDefault();
@@ -89,24 +120,37 @@ export default function VideogameCreate() {
       ...input,
       platforms: input.platforms.filter((c) => c !== e.target.name),
     });
+    setErrors(
+      validate({
+        ...input,
+      })
+    );
   };
   const handleSelectPlatforms = (e) => {
     setInput({
       ...input,
       platforms: [...input.platforms, e.target.value],
     });
+    setErrors(
+      validate({
+        ...input,
+      })
+    );
   };
 
   useEffect(() => {
-    dispatch(setLoading(true));
     dispatch(getGenres());
     dispatch(getVideogames());
+    setErrors(
+      validate({
+        ...input,
+      })
+    );
   }, [dispatch]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
     dispatch(postVideogame(input));
-    alert("Videogame creado con éxito");
     setInput({
       name: "",
       description: "",
@@ -119,112 +163,115 @@ export default function VideogameCreate() {
   };
 
   return (
-    <div>
-      <Link to="/home">
-        <button>Volver</button>
-      </Link>
-      <h1>Nuevo Videogame</h1>
-      <form onSubmit={handleSubmit}>
-        <div>
-          <label htmlFor="nameID">Nombre</label>
-          <input
+    <ContForm>
+      <form onSubmit={handleSubmit} className={styles.cont}>
+        <label htmlFor="nameID"></label>
+        <DivInputForm>
+          <InputForm
             id="nameID"
             type="text"
             value={input.name}
             name="name"
             onChange={handleChange}
+            placeholder="Nombre del videogame"
           />
-        </div>
-        {errors.name && <span>{errors.name}</span>}
-        <div>
-          <label htmlFor="descID">Descripción</label>
-          <input
+        </DivInputForm>
+        {errors.name && <ErrorForm>{errors.name}</ErrorForm>}
+        <label htmlFor="descID"></label>
+        <DivInputForm>
+          <InputForm
             id="descID"
             type="text"
             value={input.description}
             name="description"
             onChange={handleChange}
+            placeholder="Descripción"
           />
-        </div>
-        {errors.description && <span>{errors.description}</span>}
-        <div>
-          <label htmlFor="imageID">Imagen</label>
-          <input
+        </DivInputForm>
+        {errors.description && <ErrorForm>{errors.description}</ErrorForm>}
+        <label htmlFor="imageID"></label>
+        <DivInputForm>
+          <InputForm
             id="imageID"
             type="text"
             value={input.image}
             name="image"
             onChange={handleChange}
+            placeholder="Url de Imagen"
           />
-        </div>
-        {errors.image && <span>{errors.image}</span>}
-        <div>
-          <label>Fecha de Lanzamiento</label>
-          <input
+        </DivInputForm>
+        {errors.image && <ErrorForm>{errors.image}</ErrorForm>}
+        <label></label>
+        <DivInputForm>
+          <InputForm
             type="text"
             value={input.released}
             name="released"
             onChange={handleChange}
+            placeholder="Fecha de Lanzamiento"
           />
-        </div>
-        {errors.released && <span>{errors.released}</span>}
-        <div>
-          <label>Rating</label>
-          <input
+        </DivInputForm>
+        {errors.released && <ErrorForm>{errors.released}</ErrorForm>}
+        <label></label>
+        <DivInputForm>
+          <InputForm
             type="text"
             value={input.rating}
             name="rating"
             onChange={handleChange}
+            placeholder="Rating"
           />
-        </div>
-        {errors.rating && <span>{errors.rating}</span>}
-        {loading ? (
+        </DivInputForm>
+        {errors.rating && <ErrorForm>{errors.rating}</ErrorForm>}
+        <label style={{ fontWeight: "bold" }}></label>
+        <DivSelectForm>
+          <SelectForm onChange={handleSelectGenres}>
+            <option value="Géneros:">Géneros:</option>
+            {genres.map((genres) => {
+              return (
+                <option value={genres.name} key={genres.name}>
+                  {genres.name}
+                </option>
+              );
+            })}
+          </SelectForm>
+        </DivSelectForm>
+        {input.genres.map((g) => (
           <div>
-            <Loading />
-            Cargando Géneros y Plataformas
+            <p>{g}</p>
+            <button name={g} onClick={handleDeleteGenres}>
+              X
+            </button>
           </div>
-        ) : (
-          <>
-            <label style={{ fontWeight: "bold" }}>Genres: </label>
-            <select onChange={handleSelectGenres}>
-              {genres.map((genres) => {
-                return (
-                  <option value={genres.name} key={genres.name}>
-                    {genres.name}
-                  </option>
-                );
-              })}
-            </select>
-            {input.genres.map((g) => (
-              <div>
-                <p>{g}</p>
-                <button name={g} onClick={handleDeleteGenres}>
-                  X
-                </button>
-              </div>
-            ))}
-            <label style={{ fontWeight: "bold" }}>Platforms: </label>
-            <select onChange={handleSelectPlatforms}>
-              {platforms.map((platform) => {
-                return (
-                  <option value={platform} key={platform}>
-                    {platform}
-                  </option>
-                );
-              })}
-            </select>
-            {input.platforms.map((p) => (
-              <div>
-                <p>{p}</p>
-                <button name={p} onClick={handleDeletePlatform}>
-                  X
-                </button>
-              </div>
-            ))}
-          </>
-        )}
-        <button disabled={btndisabled}>Crear Videogame</button>
+        ))}
+        {errors.genres && <ErrorForm>{errors.genres}</ErrorForm>}
+        <label style={{ fontWeight: "bold" }}></label>
+        <DivSelectForm>
+          <SelectForm onChange={handleSelectPlatforms}>
+            <option value="Plataformas:">Plataformas:</option>
+            {platforms.map((platform) => {
+              return (
+                <option value={platform} key={platform}>
+                  {platform}
+                </option>
+              );
+            })}
+          </SelectForm>
+        </DivSelectForm>
+        {input.platforms.map((p) => (
+          <div>
+            <p>{p}</p>
+            <button name={p} onClick={handleDeletePlatform}>
+              X
+            </button>
+          </div>
+        ))}
+        {errors.platforms && <ErrorForm>{errors.platforms}</ErrorForm>}
+        <CrearForm disabled={btndisabled}>Crear Videogame</CrearForm>
       </form>
-    </div>
+      <Link to="/home">
+        <button>Volver</button>
+      </Link>
+    </ContForm>
   );
 }

@@ -14,7 +14,7 @@ export default function Card({ image, name, genres, id }) {
       <ContName>
         <h3>{name}</h3>
       </ContName>
-      <img src={image} alt="videogame" className={styles.image} />
+      <img src={image} alt={name} className={styles.image} />
       <ContGenres>
         <span>{genres && genres.join(" - ").toUpperCase()}</span>
       </ContGenres>

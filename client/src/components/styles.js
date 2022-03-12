@@ -233,4 +233,85 @@ export const LinkDetail = styled(Link)`
   font-family: "Poppins";
   background-color: #fff;
   color: #000;
+  transition: 0.25s;
+  &:hover {
+    box-shadow: 0px 0px 11px rgba(255, 255, 255, 0.4);
+  }
+`;
+
+export const ContForm = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  align-items: center;
+  text-align: center;
+  margin: 2rem auto;
+  width: 1200px;
+  border-radius: 5rem;
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.05) 0%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  padding: 2rem 0;
+`;
+
+export const InputForm = styled.input`
+  background-color: transparent;
+  color: #fff;
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 300;
+  border: none;
+  outline: none;
+`;
+
+export const DivInputForm = styled.div`
+  border: 1px solid #fff;
+  padding: 13px 20px;
+  border-radius: 45px;
+`;
+
+export const SelectForm = styled.select`
+  background-color: transparent;
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 300;
+  border: none;
+  outline: none;
+`;
+
+export const DivSelectForm = styled.div`
+  border: 1px solid #fff;
+  padding: 13px 20px;
+  border-radius: 45px;
+  background-color: #fff;
+`;
+
+export const ErrorForm = styled.div`
+  font-family: "Poppins";
+  font-weight: 300;
+  font-size: 14px;
+  color: #fff;
+`;
+
+export const CrearForm = styled.button`
+  text-decoration: none;
+  border: 1px solid #fff;
+  padding: 10px 20px;
+  border-radius: 25px;
+  font-family: "Poppins";
+  background-color: #fff;
+  color: #000;
+  transition: 0.25s;
+  &:enabled:hover {
+    box-shadow: 0px 0px 11px rgba(255, 255, 255, 0.4);
+  }
+  &:disabled {
+    opacity: 25%;
+  }
+  &:disabled:hover {
+    opacity: 25%;
+    box-shadow: 0px 0px 11px rgba(166, 0, 0, 1);
+  }
 `;
