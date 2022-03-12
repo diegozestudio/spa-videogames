@@ -278,7 +278,7 @@ export const SelectForm = styled.select`
   background-color: transparent;
   font-family: "Poppins";
   font-style: normal;
-  font-weight: 300;
+  font-weight: 400;
   border: none;
   outline: none;
   cursor: pointer;
