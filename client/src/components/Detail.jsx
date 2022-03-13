@@ -13,6 +13,7 @@ import {
   Loading,
   SubTitleDetail,
   TitleDetail,
+  BackgroundImage,
 } from "./styles";
 
 export default function Detail() {
@@ -30,7 +31,7 @@ export default function Detail() {
     <Loading />
   ) : (
     <ContDetail>
-      <TitleDetail> {videogame.name} </TitleDetail>
+      <TitleDetail genero={"rpg"}> {videogame.name} </TitleDetail>
       <ImageDetail src={videogame.image} alt={videogame.name} />
       <DetailDetail>{videogame.description}</DetailDetail>
       <LineDetail>
@@ -41,14 +42,14 @@ export default function Detail() {
       <LineDetail>
         {videogame.genres &&
           videogame.genres.map((g) => {
-            return <BoxShadow key={g}>{g}, </BoxShadow>;
+            return <BoxShadow key={g}>{g}</BoxShadow>;
           })}
       </LineDetail>
       <SubTitleDetail>Plataformas: </SubTitleDetail>
       <LineDetail>
         {videogame.platforms &&
           videogame.platforms.map((p) => {
-            return <BoxShadow key={p}>{p}, </BoxShadow>;
+            return <BoxShadow key={p}>{p}</BoxShadow>;
           })}
       </LineDetail>
       <LinkDetail to="/home">Volver</LinkDetail>

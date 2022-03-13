@@ -7,6 +7,11 @@ to {
 }
 `;
 
+const generos = {
+  action: "#fff",
+  rpg: "#fff",
+};
+
 export const Loading = styled.div`
   position: absolute;
   left: 46%;
@@ -172,7 +177,6 @@ export const ContDetail = styled.div`
   margin: 2rem auto;
   width: 1200px;
   border-radius: 5rem;
-  /* background-color: #333; */
   background: linear-gradient(
     180deg,
     rgba(255, 255, 255, 0.05) 0%,
@@ -183,6 +187,7 @@ export const ContDetail = styled.div`
 
 export const TitleDetail = styled.div`
   font-size: 3rem;
+  color: ${(props) => (props.genero ? generos[props.genero] : "#fff")};
 `;
 
 export const ImageDetail = styled.img`
@@ -222,6 +227,10 @@ export const SubTitleDetail = styled.div`
 
 export const LineDetail = styled.div`
   display: flex;
+  flex-wrap: wrap;
+  width: 80%;
+  align-items: center;
+  justify-content: center;
   gap: 1rem;
 `;
 
