@@ -8,7 +8,6 @@ const getApiInfo = () => {
     let i = 1;
     let allGames = [];
     while (i <= 5) {
-      console.log("while");
       let currentUrl = axios.get(
         `https://api.rawg.io/api/games?key=${API_KEY}&page=${i}`
       );

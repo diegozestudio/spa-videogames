@@ -57,7 +57,7 @@ router.get("/genres", (req, res) => {
   }
 });
 
-router.post("/videogame", async (req, res) => {
+router.post("/videogame", (req, res) => {
   try {
     let {
       name,
@@ -78,7 +78,7 @@ router.post("/videogame", async (req, res) => {
       platforms.length &&
       genres.length
     ) {
-      let newVideogame = await Videogame.create({
+      Videogame.create({
         name,
         description,
         released,
@@ -86,11 +86,11 @@ router.post("/videogame", async (req, res) => {
         platforms,
         image,
         createdInDB,
-      });
-      let genreDb = await Genre.findAll({
-        where: { name: genres },
-      });
-      newVideogame.addGenre(genreDb);
+      }).then((newVideogame) =>
+        Genre.findAll({
+          where: { name: genres },
+        }).then((genre) => newVideogame.addGenre(genre))
+      );
       res.send("Videogame creado con exito");
     } else {
       res.status(400).send("Faltaron datos para crear el videogame");
@@ -101,44 +101,49 @@ router.post("/videogame", async (req, res) => {
   }
 });
 
-router.get("/videogame/:id", async (req, res) => {
+router.get("/videogame/:id", (req, res) => {
   const { id } = req.params;
-  const gamesApi = await getApiInfo();
-  const gamesDB = await getDbInfo();
-  const findInApi = gamesApi.find((game) => game.id === Number(id));
-  const findInDB = gamesDB.find((game) => String(game.id) === id);
-  if (findInDB) {
-    res.send(findInDB);
-  } else if (findInApi) {
-    const gameFind = await axios.get(
-      `https://api.rawg.io/api/games/${id}?key=${API_KEY}`
-    );
-    let {
-      name,
-      genres,
-      background_image,
-      description,
-      released,
-      rating,
-      platforms,
-    } = gameFind.data;
-    const game = {
-      id,
-      name,
-      genres: genres.map((e) => e.name),
-      image: background_image,
-      description: description
-        .replaceAll("<p>", "")
-        .replaceAll("</p>", "")
-        .replaceAll("<br />", ""),
-      released,
-      rating,
-      platforms: platforms.map((e) => e.platform.name),
-    };
-    res.send(game);
-  } else {
-    res.status(404).send("No existe el videogame");
-  }
+  const findInDB = getDbInfo().then((r) =>
+    r.find((game) => String(game.id) === id)
+  );
+  const findInApi = getApiInfo().then((r) =>
+    r.find((game) => game.id === Number(id))
+  );
+  findInDB.then((r) =>
+    r
+      ? res.send(r)
+      : findInApi.then((r) =>
+          r
+            ? axios
+                .get(`https://api.rawg.io/api/games/${id}?key=${API_KEY}`)
+                .then((r) => {
+                  let {
+                    name,
+                    genres,
+                    background_image,
+                    description,
+                    released,
+                    rating,
+                    platforms,
+                  } = r.data;
+                  const game = {
+                    id,
+                    name,
+                    genres: genres.map((e) => e.name),
+                    image: background_image,
+                    description: description
+                      .replaceAll("<p>", "")
+                      .replaceAll("</p>", "")
+                      .replaceAll("<br />", ""),
+                    released,
+                    rating,
+                    platforms: platforms.map((e) => e.platform.name),
+                  };
+                  res.send(game);
+                })
+            : res.status(404).send("No existe el videogame")
+        )
+  );
 });
 
 module.exports = router;
