@@ -110,7 +110,7 @@ export const NavTop = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  height: 75px;
+  height: 8vh;
   background: linear-gradient(0deg, #a60000 0%, #0b0b0b 100%);
 `;
 
@@ -135,7 +135,7 @@ export const NavBot = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  height: 55px;
+  height: 6vh;
   background: linear-gradient(
     0deg,
     rgba(255, 255, 255, 0.05) 0%,
