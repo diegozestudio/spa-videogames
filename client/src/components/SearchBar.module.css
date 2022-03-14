@@ -1,6 +1,7 @@
 .formsearch {
   display: flex;
   align-items: center;
+  width: 65%;
 }
 
 .inputsearch {
@@ -23,5 +24,5 @@
   border: 1px solid #fff;
   padding: 13px 20px;
   border-radius: 45px;
-  width: 380px;
+  width: 100%;
 }

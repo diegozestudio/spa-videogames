@@ -8,7 +8,6 @@
 .pageNumbers li {
   font-family: "Poppins";
   padding: 10px;
-  /* border: 1px solid ; */
   cursor: pointer;
   background: linear-gradient(
     0deg,

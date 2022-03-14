@@ -1,8 +1,7 @@
 import React, { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { getVideogames } from "../redux/actions";
-import { LinktoHome } from "./styles";
-import styles from "./LandingPage.module.css";
+import { Cover, ImageBack, LinktoHome } from "./landingpagestyles";
 
 export default function LandingPage() {
   const dispatch = useDispatch();
@@ -13,12 +12,11 @@ export default function LandingPage() {
 
   return (
     <>
-      <img
+      <ImageBack
         src="https://w.wallhaven.cc/full/pk/wallhaven-pkmpmm.jpg"
-        className={styles.image}
         alt="fondo"
-      ></img>
-      <div className={styles.cover} />
+      />
+      <Cover />
       <LinktoHome to="/home">START</LinktoHome>
     </>
   );

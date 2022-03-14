@@ -112,27 +112,25 @@ export const CardSt = styled.div`
 
 export const NavTop = styled.div`
   display: flex;
-  align-items: center;
   justify-content: space-between;
+  width: 100%;
   height: 8vh;
+  padding: 0 5%;
   background: linear-gradient(0deg, #a60000 0%, #0b0b0b 100%);
 `;
 
 export const NavTopRight = styled.div`
   display: flex;
-  width: 655px;
   justify-content: space-between;
-  margin-right: 5rem;
   align-items: center;
-  column-gap: 2rem;
+  width: 40%;
 `;
 
 export const NavBottomRight = styled.div`
   display: flex;
-  margin-right: 5rem;
-
+  justify-content: space-between;
   align-items: center;
-  column-gap: 2rem;
+  width: 40%;
 `;
 
 export const NavBot = styled.div`
@@ -140,6 +138,8 @@ export const NavBot = styled.div`
   align-items: center;
   justify-content: space-between;
   height: 6vh;
+  width: 100%;
+  padding: 0 5%;
   background: linear-gradient(
     0deg,
     rgba(255, 255, 255, 0.05) 0%,

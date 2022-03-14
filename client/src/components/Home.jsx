@@ -1,7 +1,6 @@
 import React from "react";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link } from "react-router-dom";
 import {
   filterByGenre,
   getApiVideogames,
@@ -28,10 +27,17 @@ import {
   NavTopRight,
   SelectCosas,
   ContLoading,
-} from "./styles";
+  Joystick,
+  Hamburger,
+  Reload,
+  LinkHome,
+  Gamepad,
+  SelectFiltros,
+  FlechitaAbajo,
+  FlechitaArriba,
+} from "./homestyles";
 import joystick from "../assets/joystick.svg";
 import menu from "../assets/bars.svg";
-import styles from "./Home.module.css";
 import reload from "../assets/arrow-rotate-right.svg";
 import gamepad from "../assets/gamepad.svg";
 import flechabajo from "../assets/chevron-down.svg";
@@ -109,50 +115,36 @@ export default function Home() {
   return (
     <>
       <NavTop>
-        <Link to="/" className={styles.linkhome}>
-          <img src={joystick} className={styles.joystick} alt="joistick" />
-        </Link>
+        <LinkHome to="/">
+          <Joystick src={joystick} alt="joistick" />
+        </LinkHome>
         <NavTopRight>
           <SearchBar />
           <LinkNewGame to="/videogame">
             <DivNewGame>
               New
-              <img src={gamepad} className={styles.gamepad} alt="gamepad" />
+              <Gamepad src={gamepad} alt="gamepad" />
             </DivNewGame>
           </LinkNewGame>
-          <img
-            src={menu}
-            className={styles.hamburger}
-            onClick={handleShowNav}
-            alt="hamburger"
-          />
+          <Hamburger src={menu} onClick={handleShowNav} alt="hamburger" />
         </NavTopRight>
       </NavTop>
       {nav && (
         <NavBot>
-          <img
-            onClick={handleReload}
-            src={reload}
-            className={styles.reload}
-            alt="reload"
-          />
+          <Reload onClick={handleReload} src={reload} alt="reload" />
           <NavBottomRight>
             <SelectCosas>
-              <select onChange={handleSort} className={styles.selectfiltros}>
+              <SelectFiltros onChange={handleSort}>
                 <option value="orden">Orden</option>
                 <option value="a-z">A - Z</option>
                 <option value="z-a">Z - A</option>
                 <option value="mayor-rating">Mayor Rating</option>
                 <option value="menor-rating">Menor Rating</option>
-              </select>
-              <img
-                src={flechabajo}
-                className={styles.flechitabajo}
-                alt="flecha-abajo"
-              />
+              </SelectFiltros>
+              <FlechitaAbajo src={flechabajo} alt="flecha-abajo" />
             </SelectCosas>
             <SelectCosas>
-              <select onChange={handleGenres} className={styles.selectfiltros}>
+              <SelectFiltros onChange={handleGenres}>
                 <option value="generos">Géneros</option>
                 {genres.map((g) => {
                   return (
@@ -161,32 +153,20 @@ export default function Home() {
                     </option>
                   );
                 })}
-              </select>
-              <img
-                src={flechabajo}
-                className={styles.flechitabajo}
-                alt="flecha-abajo"
-              />
+              </SelectFiltros>
+              <FlechitaAbajo src={flechabajo} alt="flecha-abajo" />
             </SelectCosas>
             <SelectCosas>
-              <select
-                onChange={handleFilterCreated}
-                className={styles.selectfiltros}
-              >
+              <SelectFiltros onChange={handleFilterCreated}>
                 <option value="all">Origen</option>
                 <option value="all">Todos</option>
                 <option value="db">Creados</option>
                 <option value="api">Existentes</option>
-              </select>
-              <img
-                src={flechabajo}
-                className={styles.flechitabajo}
-                alt="flecha-abajo"
-              />
+              </SelectFiltros>
+              <FlechitaAbajo src={flechabajo} alt="flecha-abajo" />
             </SelectCosas>
-            <img
+            <FlechitaArriba
               src={flecharriba}
-              className={styles.flechitarriba}
               onClick={handleHideNav}
               alt="flecha-arriba"
             />

@@ -5,18 +5,20 @@ import {
   ContName,
   FondoVermas,
   LinkVerMas,
-} from "./styles";
-import styles from "./Card.module.css";
+  ImageCard,
+  TitleCard,
+  GenresCard,
+} from "./cardstyles";
 
 export default function Card({ image, name, genres, id }) {
   return (
     <CardSt>
       <ContName>
-        <h3>{name}</h3>
+        <TitleCard>{name}</TitleCard>
       </ContName>
-      <img src={image} alt={name} className={styles.image} />
+      <ImageCard src={image} alt={name} />
       <ContGenres>
-        <span>{genres && genres.join(" - ").toUpperCase()}</span>
+        <GenresCard>{genres && genres.join(" - ").toUpperCase()}</GenresCard>
       </ContGenres>
       <FondoVermas>
         <LinkVerMas to={`/videogame/${id}`}>Ver detalles</LinkVerMas>
