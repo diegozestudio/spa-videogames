@@ -27,16 +27,24 @@ router.get("/videogames", (req, res) => {
       }
     });
   } catch (err) {
-    console.log("entré al catch :(", err);
+    console.log("entré al catch del get /videogames", err);
   }
 });
 
 router.get("/api_videogames", (req, res) => {
-  getApiInfo().then((r) => res.status(200).send(r));
+  try {
+    getApiInfo().then((r) => res.status(200).send(r));
+  } catch (err) {
+    console.log("entré al catch del get /api_videogames", err);
+  }
 });
 
 router.get("/db_videogames", (req, res) => {
-  getDbInfo().then((r) => res.send(200, r));
+  try {
+    getDbInfo().then((r) => res.send(200, r));
+  } catch (err) {
+    console.log("entré al catch del get /db_videogames", err);
+  }
 });
 
 router.get("/genres", (req, res) => {
@@ -53,7 +61,7 @@ router.get("/genres", (req, res) => {
       );
     Genre.findAll().then((r) => res.send(r));
   } catch (err) {
-    console.log("entré al catch :(", err);
+    console.log("entré al catch del get /genres", err);
   }
 });
 
@@ -103,47 +111,51 @@ router.post("/videogame", (req, res) => {
 
 router.get("/videogame/:id", (req, res) => {
   const { id } = req.params;
-  const findInDB = getDbInfo().then((r) =>
-    r.find((game) => String(game.id) === id)
-  );
-  const findInApi = getApiInfo().then((r) =>
-    r.find((game) => game.id === Number(id))
-  );
-  findInDB.then((r) =>
-    r
-      ? res.send(r)
-      : findInApi.then((r) =>
-          r
-            ? axios
-                .get(`https://api.rawg.io/api/games/${id}?key=${API_KEY}`)
-                .then((r) => {
-                  let {
-                    name,
-                    genres,
-                    background_image,
-                    description,
-                    released,
-                    rating,
-                    platforms,
-                  } = r.data;
-                  const game = {
-                    id,
-                    name,
-                    genres: genres.map((e) => e.name),
-                    image: background_image,
-                    description: description
-                      .replaceAll("<p>", "")
-                      .replaceAll("</p>", "")
-                      .replaceAll("<br />", ""),
-                    released,
-                    rating,
-                    platforms: platforms.map((e) => e.platform.name),
-                  };
-                  res.send(game);
-                })
-            : res.status(404).send("No existe el videogame")
-        )
-  );
+  try {
+    const findInDB = getDbInfo().then((r) =>
+      r.find((game) => String(game.id) === id)
+    );
+    const findInApi = getApiInfo().then((r) =>
+      r.find((game) => game.id === Number(id))
+    );
+    findInDB.then((r) =>
+      r
+        ? res.send(r)
+        : findInApi.then((r) =>
+            r
+              ? axios
+                  .get(`https://api.rawg.io/api/games/${id}?key=${API_KEY}`)
+                  .then((r) => {
+                    let {
+                      name,
+                      genres,
+                      background_image,
+                      description,
+                      released,
+                      rating,
+                      platforms,
+                    } = r.data;
+                    const game = {
+                      id,
+                      name,
+                      genres: genres.map((e) => e.name),
+                      image: background_image,
+                      description: description
+                        .replaceAll("<p>", "")
+                        .replaceAll("</p>", "")
+                        .replaceAll("<br />", ""),
+                      released,
+                      rating,
+                      platforms: platforms.map((e) => e.platform.name),
+                    };
+                    res.send(game);
+                  })
+              : res.status(404).send("No existe el videogame")
+          )
+    );
+  } catch (err) {
+    console.log("entré al catch del get /videogame/:id", err);
+  }
 });
 
 module.exports = router;
