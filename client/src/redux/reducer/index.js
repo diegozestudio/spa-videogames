@@ -74,7 +74,6 @@ function rootReducer(state = initialState, action) {
       };
     case ORDER_BY_NAME:
       if (action.payload === "a-z") {
-        console.log("entre al a-z");
         const gamesOrdered = state.allVideogames.sort((a, b) => {
           if (a.name > b.name) {
             return 1;
@@ -91,7 +90,6 @@ function rootReducer(state = initialState, action) {
         };
       }
       if (action.payload === "z-a") {
-        console.log("entre al z-a");
         const gamesOrdered = state.allVideogames.sort((a, b) => {
           if (a.name > b.name) {
             return -1;
@@ -107,6 +105,7 @@ function rootReducer(state = initialState, action) {
           loading: false,
         };
       }
+      break;
     case ORDER_BY_RATING:
       if (action.payload === "menor-rating") {
         const gamesOrdered = state.allVideogames.sort((a, b) => {
@@ -140,6 +139,7 @@ function rootReducer(state = initialState, action) {
           loading: false,
         };
       }
+      break;
     case GET_NAME_VG:
       return {
         ...state,

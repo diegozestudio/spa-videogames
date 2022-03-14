@@ -27,6 +27,7 @@ import {
   NavTop,
   NavTopRight,
   SelectCosas,
+  ContLoading,
 } from "./styles";
 import joystick from "../assets/joystick.svg";
 import menu from "../assets/bars.svg";
@@ -109,26 +110,32 @@ export default function Home() {
     <>
       <NavTop>
         <Link to="/" className={styles.linkhome}>
-          <img src={joystick} className={styles.joystick} />
+          <img src={joystick} className={styles.joystick} alt="joistick" />
         </Link>
         <NavTopRight>
           <SearchBar />
           <LinkNewGame to="/videogame">
             <DivNewGame>
               New
-              <img src={gamepad} className={styles.gamepad} />
+              <img src={gamepad} className={styles.gamepad} alt="gamepad" />
             </DivNewGame>
           </LinkNewGame>
           <img
             src={menu}
             className={styles.hamburger}
             onClick={handleShowNav}
+            alt="hamburger"
           />
         </NavTopRight>
       </NavTop>
       {nav && (
         <NavBot>
-          <img onClick={handleReload} src={reload} className={styles.reload} />
+          <img
+            onClick={handleReload}
+            src={reload}
+            className={styles.reload}
+            alt="reload"
+          />
           <NavBottomRight>
             <SelectCosas>
               <select onChange={handleSort} className={styles.selectfiltros}>
@@ -138,7 +145,11 @@ export default function Home() {
                 <option value="mayor-rating">Mayor Rating</option>
                 <option value="menor-rating">Menor Rating</option>
               </select>
-              <img src={flechabajo} className={styles.flechitabajo} />
+              <img
+                src={flechabajo}
+                className={styles.flechitabajo}
+                alt="flecha-abajo"
+              />
             </SelectCosas>
             <SelectCosas>
               <select onChange={handleGenres} className={styles.selectfiltros}>
@@ -151,7 +162,11 @@ export default function Home() {
                   );
                 })}
               </select>
-              <img src={flechabajo} className={styles.flechitabajo} />
+              <img
+                src={flechabajo}
+                className={styles.flechitabajo}
+                alt="flecha-abajo"
+              />
             </SelectCosas>
             <SelectCosas>
               <select
@@ -163,12 +178,17 @@ export default function Home() {
                 <option value="db">Creados</option>
                 <option value="api">Existentes</option>
               </select>
-              <img src={flechabajo} className={styles.flechitabajo} />
+              <img
+                src={flechabajo}
+                className={styles.flechitabajo}
+                alt="flecha-abajo"
+              />
             </SelectCosas>
             <img
               src={flecharriba}
               className={styles.flechitarriba}
               onClick={handleHideNav}
+              alt="flecha-arriba"
             />
           </NavBottomRight>
         </NavBot>
@@ -176,7 +196,9 @@ export default function Home() {
       {error ? (
         <Error />
       ) : loading ? (
-        <Loading />
+        <ContLoading>
+          <Loading />
+        </ContLoading>
       ) : (
         <Pagination videogames={videogames} />
       )}

@@ -16,6 +16,7 @@ export default function LandingPage() {
       <img
         src="https://w.wallhaven.cc/full/pk/wallhaven-pkmpmm.jpg"
         className={styles.image}
+        alt="fondo"
       ></img>
       <div className={styles.cover} />
       <LinktoHome to="/home">START</LinktoHome>

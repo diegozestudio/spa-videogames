@@ -2,7 +2,7 @@ import React from "react";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
-import { getDetail, setError, setLoading } from "../redux/actions";
+import { getDetail, setLoading } from "../redux/actions";
 import {
   BoxShadow,
   ContDetail,
@@ -13,7 +13,7 @@ import {
   Loading,
   SubTitleDetail,
   TitleDetail,
-  BackgroundImage,
+  ContErrorDetail,
 } from "./styles";
 
 export default function Detail() {
@@ -25,10 +25,12 @@ export default function Detail() {
   useEffect(() => {
     dispatch(setLoading(true));
     dispatch(getDetail(id));
-  }, [dispatch]);
+  }, [dispatch, id]);
 
   return loading ? (
-    <Loading />
+    <ContErrorDetail>
+      <Loading />
+    </ContErrorDetail>
   ) : (
     <ContDetail>
       <TitleDetail genero={"rpg"}> {videogame.name} </TitleDetail>

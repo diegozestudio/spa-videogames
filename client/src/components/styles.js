@@ -12,10 +12,14 @@ const generos = {
   rpg: "#fff",
 };
 
+export const ContLoading = styled.div`
+  height: 86vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
 export const Loading = styled.div`
-  position: absolute;
-  left: 46%;
-  top: 40%;
   width: 10rem;
   height: 10rem;
   border: 3px solid #333;
@@ -246,6 +250,13 @@ export const LinkDetail = styled(Link)`
   &:hover {
     box-shadow: 0px 0px 11px rgba(255, 255, 255, 0.4);
   }
+`;
+
+export const ContErrorDetail = styled.div`
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `;
 
 export const ContForm = styled.div`

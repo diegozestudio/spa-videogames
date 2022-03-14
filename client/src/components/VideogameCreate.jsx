@@ -146,7 +146,7 @@ export default function VideogameCreate() {
         ...input,
       })
     );
-  }, [dispatch]);
+  }, [dispatch, input]);
 
   const handleSubmit = (e) => {
     e.preventDefault();

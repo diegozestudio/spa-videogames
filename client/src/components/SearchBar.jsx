@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { getNameVideogame, setLoading } from "../redux/actions";
+import { getNameVideogame, setCurrentPage, setLoading } from "../redux/actions";
 import { useDispatch } from "react-redux";
 import styles from "./SearchBar.module.css";
 import search from "../assets/search.svg";
@@ -17,6 +17,7 @@ export default function SearchBar() {
     dispatch(setLoading(true));
     dispatch(getNameVideogame(name));
     setName("");
+    dispatch(setCurrentPage(1));
   };
   return (
     <form onSubmit={handleSubmit} className={styles.formsearch}>
@@ -28,7 +29,12 @@ export default function SearchBar() {
           onChange={handleChange}
           className={styles.inputsearch}
         />
-        <input src={search} type="image" className={styles.lupita} />
+        <input
+          src={search}
+          type="image"
+          className={styles.lupita}
+          alt="lupita"
+        />
       </div>
     </form>
   );
