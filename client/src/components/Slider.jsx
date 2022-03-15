@@ -15,32 +15,41 @@ import {
 } from "./sliderstyles";
 import flechaizquierda from "../assets/angle-left.svg";
 import flechaderecha from "../assets/angle-right.svg";
+import { useDispatch, useSelector } from "react-redux";
+import { setAutoplay } from "../redux/actions";
 
 export default function Slider() {
+  const autoplay = useSelector((state) => state.autoplay);
+  const dispatch = useDispatch();
+
+  const slideshow = useRef(null);
+
   const siguiente = () => {
-    if (slideshow.current.children.length > 0) {
-      // Obtenemos el primer elemento del slideshow
-      const primerElemento = slideshow.current.children[0];
-      // Establecemos la transicion para el slideshow
-      slideshow.current.style.transition = `1200ms ease-out all`;
-      const tamañoSlide = slideshow.current.children[0].offsetWidth;
-      // Movemos el slideshow
-      slideshow.current.style.transform = `translateX(-${tamañoSlide}px)`;
-      const transicion = () => {
-        // Reiniciamos la posicion del SlideShow
-        slideshow.current.style.transition = "none";
-        slideshow.current.style.transform = `translateX(0)`;
-        // Tomamos el primer elemento y lo mandamos al final
-        slideshow.current.appendChild(primerElemento);
-        slideshow.current.removeEventListener("transitionend", transicion);
-      };
-      // EventListener para cuando termina la animacion
-      slideshow.current.addEventListener("transitionend", transicion);
-    }
+    try {
+      if (autoplay && slideshow.current.children.length > 0) {
+        // Obtenemos el primer elemento del slideshow
+        const primerElemento = slideshow.current.children[0];
+        // Establecemos la transicion para el slideshow
+        slideshow.current.style.transition = `1200ms ease-out all`;
+        const tamañoSlide = slideshow.current.children[0].offsetWidth;
+        // Movemos el slideshow
+        slideshow.current.style.transform = `translateX(-${tamañoSlide}px)`;
+        const transicion = () => {
+          // Reiniciamos la posicion del SlideShow
+          slideshow.current.style.transition = "none";
+          slideshow.current.style.transform = `translateX(0)`;
+          // Tomamos el primer elemento y lo mandamos al final
+          slideshow.current.appendChild(primerElemento);
+          slideshow.current.removeEventListener("transitionend", transicion);
+        };
+        // EventListener para cuando termina la animacion
+        slideshow.current.addEventListener("transitionend", transicion);
+      }
+    } catch (err) {}
   };
 
   const anterior = () => {
-    if (slideshow.current.children.length > 0) {
+    if (autoplay && slideshow.current.children.length > 0) {
       // Obtenemos el ultimo elemento del slideshow
       const index = slideshow.current.children.length - 1;
       const ultimoElemento = slideshow.current.children[index];
@@ -59,12 +68,14 @@ export default function Slider() {
   };
 
   useEffect(() => {
-    setInterval(() => {
-      siguiente();
-    }, 5000);
-  }, []);
+    dispatch(setAutoplay(true));
+    if (autoplay) {
+      setInterval(() => {
+        siguiente();
+      }, 5000);
+    }
+  }, [autoplay, dispatch, siguiente]);
 
-  const slideshow = useRef(null);
   return (
     <ContenedorPrincipal>
       <ContenedorSlideShow ref={slideshow}>

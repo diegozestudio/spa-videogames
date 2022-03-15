@@ -13,6 +13,7 @@ import {
   POST_VG,
   SET_NAV,
   SET_ERROR,
+  SET_AUTOPLAY,
 } from "../actions";
 
 const initialState = {
@@ -24,6 +25,7 @@ const initialState = {
   loading: true,
   nav: false,
   error: false,
+  autoplay: false,
 };
 
 function rootReducer(state = initialState, action) {
@@ -34,6 +36,11 @@ function rootReducer(state = initialState, action) {
         allVideogames: action.payload,
         videogames: action.payload,
         loading: false,
+      };
+    case SET_AUTOPLAY:
+      return {
+        ...state,
+        autoplay: action.payload,
       };
     case SET_ERROR:
       return {

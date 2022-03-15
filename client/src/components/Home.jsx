@@ -9,6 +9,7 @@ import {
   getVideogames,
   orderByName,
   orderByRating,
+  setAutoplay,
   setCurrentPage,
   setError,
   setLoading,
@@ -45,12 +46,15 @@ import flecharriba from "../assets/angle-up.svg";
 
 export default function Home() {
   const dispatch = useDispatch();
+  const autoplay = useSelector((state) => state.autoplay);
   const loading = useSelector((state) => state.loading);
   const nav = useSelector((state) => state.nav);
   const genres = useSelector((state) => state.genres);
   let videogames = useSelector((state) => state.videogames);
   const error = useSelector((state) => state.error);
+
   useEffect(() => {
+    autoplay && dispatch(setAutoplay(false));
     dispatch(setLoading(true));
     dispatch(getVideogames());
     dispatch(getGenres());

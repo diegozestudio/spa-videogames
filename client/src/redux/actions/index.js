@@ -13,6 +13,7 @@ export const GET_DETAIL = "GET_DETAIL";
 export const POST_VG = "POST_VG";
 export const SET_NAV = "SET_NAV";
 export const SET_ERROR = "SET_ERROR";
+export const SET_AUTOPLAY = "SET_AUTOPLAY";
 
 export function getVideogames() {
   return async function (dispatch) {
@@ -125,4 +126,8 @@ export function setNav(payload) {
 
 export function setError(payload) {
   return { type: SET_ERROR, payload };
+}
+
+export function setAutoplay(payload) {
+  return { type: SET_AUTOPLAY, payload };
 }

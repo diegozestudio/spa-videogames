@@ -59,9 +59,10 @@ router.get("/genres", (req, res) => {
           });
         })
       );
-    Genre.findAll().then((r) => res.send(r));
   } catch (err) {
     console.log("entré al catch del get /genres", err);
+  } finally {
+    Genre.findAll().then((r) => res.send(r));
   }
 });
 

@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
-import { getGenres, getVideogames, postVideogame } from "../redux/actions";
+import { postVideogame } from "../redux/actions";
 import {
   ContForm,
   CrearForm,
@@ -137,14 +137,12 @@ export default function VideogameCreate() {
   };
 
   useEffect(() => {
-    dispatch(getGenres());
-    dispatch(getVideogames());
     setErrors(
       validate({
         ...input,
       })
     );
-  }, [dispatch, input]);
+  }, [input]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
