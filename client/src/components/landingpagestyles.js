@@ -4,7 +4,7 @@ import styled from "styled-components";
 export const LinktoHome = styled(Link)`
   position: relative;
   top: 40vh;
-  left: 60vw;
+  left: 50vw;
   padding: 1rem 3rem;
   text-decoration: none;
   font-size: 6rem;

@@ -4,7 +4,7 @@ import Card from "./Card";
 import styles from "./Pagination.module.css";
 import { useDispatch, useSelector } from "react-redux";
 import { setCurrentPage } from "../redux/actions";
-import { ContCards } from "./styles";
+import { ContCards } from "./paginationstyles";
 
 const renderData = (data) => {
   return data.map((v) => {

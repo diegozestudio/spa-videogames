@@ -2,8 +2,6 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { getGenres, getVideogames, postVideogame } from "../redux/actions";
-
-import styles from "./VideogameCreate.module.css";
 import {
   ContForm,
   CrearForm,
@@ -17,7 +15,7 @@ import {
   BtnEliminar,
   Equis,
   Ffform,
-} from "./styles";
+} from "./videogamecreatestyles";
 
 const validurl = (url) => {
   return /^(ftp|http|https):\/\/[^ "]+$/.test(url);
@@ -166,7 +164,7 @@ export default function VideogameCreate() {
 
   return (
     <ContForm>
-      <Ffform onSubmit={handleSubmit} className={styles.cont}>
+      <Ffform onSubmit={handleSubmit}>
         <label htmlFor="nameID"></label>
         <DivInputForm>
           <InputForm

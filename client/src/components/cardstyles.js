@@ -5,6 +5,10 @@ export const CardSt = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  transition: all 0.3s ease-in-out;
+  &:hover {
+    transform: scale(1.03);
+  }
 `;
 
 export const ContGenres = styled.div`
@@ -41,9 +45,10 @@ export const FondoVermas = styled.div`
   justify-content: center;
   align-items: center;
   opacity: 0%;
-  transition: 0.25s;
+  transition: all 0.3s ease-in-out;
   &:hover {
     opacity: 100%;
+    box-shadow: 0px 0px 7px rgba(255, 255, 255, 0.2);
   }
 `;
 

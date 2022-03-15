@@ -22,6 +22,7 @@ export const LinkNewGame = styled(Link)`
   font-weight: 400;
   text-decoration: none;
   color: #a60000;
+  /* flex-grow: 1; */
 `;
 
 export const Loading = styled.div`
@@ -76,6 +77,8 @@ export const SelectCosas = styled.div`
   padding: 8px 20px;
   background-color: #fff;
   border-radius: 45px;
+  flex-grow: 1;
+  margin-right: 2rem;
 `;
 
 export const ContLoading = styled.div`
@@ -93,6 +96,7 @@ export const Joystick = styled.img`
 export const Hamburger = styled.img`
   height: 30px;
   cursor: pointer;
+  margin-left: 2rem;
 `;
 
 export const Reload = styled.img`
@@ -120,6 +124,7 @@ export const SelectFiltros = styled.select`
   color: #000;
   font-family: "Poppins";
   font-weight: 400;
+  flex-grow: 1;
 `;
 
 export const FlechitaAbajo = styled.img`
