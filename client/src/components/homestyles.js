@@ -112,7 +112,7 @@ export const Reload = styled.img`
   border-radius: 50%;
   height: 30px;
   cursor: pointer;
-  transition: 0.15s;
+  transition: all 0.3s ease-in-out;
   &:hover {
     box-shadow: 0px 0px 7px rgba(255, 255, 255, 0.4);
   }

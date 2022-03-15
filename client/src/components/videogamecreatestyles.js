@@ -36,6 +36,7 @@ export const CrearForm = styled.button`
     opacity: 25%;
   }
   &:disabled:hover {
+    cursor: auto;
     opacity: 25%;
     box-shadow: 0px 0px 11px rgba(166, 0, 0, 1);
   }
@@ -98,6 +99,9 @@ export const LinkVolver = styled(Link)`
   font-weight: 300;
   color: #fff;
   opacity: 75%;
+  &:hover {
+    font-weight: 400;
+  }
 `;
 
 export const BtnEliminar = styled.button`

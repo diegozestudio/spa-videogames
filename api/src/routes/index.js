@@ -16,11 +16,11 @@ router.get("/videogames", (req, res) => {
     const name = req.query.name;
     getAllGames().then((r) => {
       if (name) {
-        let characterName = r.filter((c) =>
-          c.name.toLowerCase().includes(name.toLowerCase())
+        let videogameName = r.filter((v) =>
+          v.name.toLowerCase().includes(name.toLowerCase())
         );
-        characterName.length
-          ? res.status(200).send(characterName)
+        videogameName.length
+          ? res.status(200).send(videogameName)
           : res.status(400).send("No existe el videogame :(");
       } else {
         res.status(200).send(r);
@@ -100,7 +100,7 @@ router.post("/videogame", (req, res) => {
           where: { name: genres },
         }).then((genre) => newVideogame.addGenre(genre))
       );
-      res.send("Videogame creado con exito");
+      res.send("Juego creado con exito");
     } else {
       res.status(400).send("Faltaron datos para crear el videogame");
     }
