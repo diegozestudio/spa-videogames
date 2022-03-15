@@ -14,6 +14,7 @@ import {
   SET_NAV,
   SET_ERROR,
   SET_AUTOPLAY,
+  SET_CORS,
 } from "../actions";
 
 const initialState = {
@@ -26,6 +27,7 @@ const initialState = {
   nav: false,
   error: false,
   autoplay: false,
+  cors: true,
 };
 
 function rootReducer(state = initialState, action) {
@@ -41,6 +43,11 @@ function rootReducer(state = initialState, action) {
       return {
         ...state,
         autoplay: action.payload,
+      };
+    case SET_CORS:
+      return {
+        ...state,
+        cors: action.payload,
       };
     case SET_ERROR:
       return {
