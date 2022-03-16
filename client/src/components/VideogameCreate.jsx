@@ -27,7 +27,7 @@ const validurl = (url) => {
 };
 
 const validnum = (num) => {
-  if (num.match(/^(?!0\d)\d*(\.\d+)?$/)) {
+  if (num.match(/^(?!0\d)\d*(\.\d+)?$/) && num !== "") {
     return true;
   } else {
     return false;
@@ -167,7 +167,7 @@ export default function VideogameCreate() {
       genres: [],
       platforms: [],
     });
-    alert("Videogame creado con exito");
+    alert("Juego creado con exito");
     history.push("/home");
   };
 

@@ -39,7 +39,7 @@ export default function Paginado({ videogames }) {
   const currentItems = videogames.slice(indexOfFirstItem, indexOfLastItem);
 
   const renderPageNumbers = pages.map((number) => {
-    if (number < maxPageNumberLimit + 1 && number > minPageNumberLimit) {
+    if (number <= maxPageNumberLimit && number > minPageNumberLimit) {
       return (
         <li
           key={number}
@@ -87,12 +87,14 @@ export default function Paginado({ videogames }) {
     if (itemsPerPage < 50) {
       setitemsPerPage(itemsPerPage + 5);
     }
+    dispatch(setCurrentPage(1));
   };
 
   const handleLoadLess = () => {
     if (itemsPerPage > 5) {
       setitemsPerPage(itemsPerPage - 5);
     }
+    dispatch(setCurrentPage(1));
   };
 
   return (

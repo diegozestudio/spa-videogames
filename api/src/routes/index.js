@@ -21,7 +21,7 @@ router.get("/videogames", (req, res) => {
         );
         videogameName.length
           ? res.status(200).send(videogameName)
-          : res.status(400).send("No existe el videogame :(");
+          : res.status(400).send("No existe el juego :(");
       } else {
         res.status(200).send(r);
       }
@@ -50,7 +50,7 @@ router.get("/db_videogames", (req, res) => {
 router.get("/genres", (req, res) => {
   try {
     getApiInfo()
-      .then((r) => r.map((c) => c.genres))
+      .then((r) => r.map((v) => v.genres))
       .then((r) => [...new Set(r.flat())])
       .then((r) =>
         r.forEach((genre) => {
@@ -102,7 +102,7 @@ router.post("/videogame", (req, res) => {
       );
       res.send("Juego creado con exito");
     } else {
-      res.status(400).send("Faltaron datos para crear el videogame");
+      res.status(400).send("Faltaron datos para crear el juego");
     }
   } catch (err) {
     console.log("entre al catch del post", err);
@@ -151,7 +151,7 @@ router.get("/videogame/:id", (req, res) => {
                     };
                     res.send(game);
                   })
-              : res.status(404).send("No existe el videogame")
+              : res.status(404).send("No existe el juego")
           )
     );
   } catch (err) {
