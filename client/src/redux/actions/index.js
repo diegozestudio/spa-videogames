@@ -139,7 +139,7 @@ export function setCors(payload) {
 export function deleteVideogame(id) {
   return async function (dispatch) {
     try {
-      await axios.delete(`/deleted/${id}`);
+      await axios.delete("/deleted/" + id);
       return dispatch({
         type: DELETE_VG,
       });
