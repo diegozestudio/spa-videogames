@@ -10,7 +10,13 @@ const renderData = (data) => {
   return data.map((v) => {
     return (
       <div key={v.id}>
-        <Card name={v.name} image={v.image} genres={v.genres} id={v.id} />
+        <Card
+          name={v.name}
+          image={v.image}
+          genres={v.genres}
+          id={v.id}
+          rating={v.rating}
+        />
       </div>
     );
   });

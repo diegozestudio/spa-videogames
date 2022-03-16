@@ -5,7 +5,7 @@ import {
   getGenres,
   getVideogames,
   postVideogame,
-  setCors,
+  // setCors,
 } from "../redux/actions";
 import {
   ContForm,
@@ -143,11 +143,14 @@ export default function VideogameCreate() {
   };
 
   useEffect(() => {
-    if (cors) {
-      dispatch(getVideogames());
-      dispatch(getGenres());
-      dispatch(setCors(false));
-    }
+    dispatch(getGenres());
+    dispatch(getVideogames());
+  }, [dispatch]);
+
+  useEffect(() => {
+    // if (cors) {
+    // dispatch(setCors(false));
+    // }
     setErrors(
       validate({
         ...input,

@@ -82,3 +82,9 @@ export const GenresCard = styled.div`
   color: #000;
   bottom: 5px;
 `;
+
+export const Rating = styled.div`
+  font-size: 1rem;
+  color: #000;
+  z-index: 10;
+`;
