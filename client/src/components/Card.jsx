@@ -8,7 +8,7 @@ import {
   ImageCard,
   TitleCard,
   GenresCard,
-} from "./cardstyles";
+} from "../styles/cardstyles";
 
 export default function Card({ image, name, genres, id }) {
   return (

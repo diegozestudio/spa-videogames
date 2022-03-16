@@ -7,7 +7,7 @@ import {
   FormSearch,
   InputLupita,
   InputSearch,
-} from "./searchbarstyles";
+} from "../styles/searchbarstyles";
 
 export default function SearchBar() {
   const dispatch = useDispatch();

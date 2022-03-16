@@ -1,5 +1,5 @@
 import React from "react";
-import { ContError, SadFace, Reload } from "./errorstyles";
+import { ContError, SadFace, Reload } from "../styles/errorstyles";
 import sadface from "../assets/sadface.svg";
 import { useDispatch } from "react-redux";
 import {

@@ -1,10 +1,10 @@
 import React from "react";
 import { useState } from "react";
 import Card from "./Card";
-import styles from "./Pagination.module.css";
+import styles from "../styles/Pagination.module.css";
 import { useDispatch, useSelector } from "react-redux";
 import { setCurrentPage } from "../redux/actions";
-import { ContCards } from "./paginationstyles";
+import { ContCards } from "../styles/paginationstyles";
 
 const renderData = (data) => {
   return data.map((v) => {

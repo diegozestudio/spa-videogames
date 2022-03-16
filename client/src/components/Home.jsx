@@ -36,7 +36,7 @@ import {
   SelectFiltros,
   FlechitaAbajo,
   FlechitaArriba,
-} from "./homestyles";
+} from "../styles/homestyles";
 import joystick from "../assets/joystick.svg";
 import menu from "../assets/bars.svg";
 import reload from "../assets/arrow-rotate-right.svg";

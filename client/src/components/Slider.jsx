@@ -12,7 +12,7 @@ import {
   ContLink,
   Iconos,
   Boton,
-} from "./sliderstyles";
+} from "../styles/sliderstyles";
 import flechaizquierda from "../assets/angle-left.svg";
 import flechaderecha from "../assets/angle-right.svg";
 import { useDispatch, useSelector } from "react-redux";

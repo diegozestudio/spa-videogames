@@ -20,7 +20,7 @@ import {
   BtnEliminar,
   Equis,
   Ffform,
-} from "./videogamecreatestyles";
+} from "../styles/videogamecreatestyles";
 
 const validurl = (url) => {
   return /^(ftp|http|https):\/\/[^ "]+$/.test(url);

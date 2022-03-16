@@ -16,7 +16,7 @@ import {
   ContErrorDetail,
   ListDetail,
   DateRating,
-} from "./detailstyles";
+} from "../styles/detailstyles";
 
 export default function Detail() {
   const { id } = useParams();
