@@ -43,7 +43,11 @@ export function getDBVideogames() {
   return async function (dispatch) {
     try {
       let json = await axios.get("/db_videogames");
-      return dispatch({ type: GET_DB_VIDEOGAMES, payload: json.data });
+      if (json.data.length) {
+        return dispatch({ type: GET_DB_VIDEOGAMES, payload: json.data });
+      } else {
+        return dispatch({ type: SET_ERROR, payload: true });
+      }
     } catch (err) {
       return dispatch({ type: SET_ERROR, payload: true });
     }
