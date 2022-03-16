@@ -41,7 +41,7 @@ router.get("/api_videogames", (req, res) => {
 
 router.get("/db_videogames", (req, res) => {
   try {
-    getDbInfo().then((r) => res.send(200, r));
+    getDbInfo().then((r) => res.status(200).send(r));
   } catch (err) {
     console.log("entré al catch del get /db_videogames", err);
   }
