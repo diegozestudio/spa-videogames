@@ -65,6 +65,7 @@ export default function Home() {
     dispatch(setError(false));
     dispatch(setLoading(true));
     dispatch(getVideogames());
+    dispatch(setCurrentPage(1));
   };
 
   const handleFilterCreated = (e) => {
@@ -80,14 +81,17 @@ export default function Home() {
       dispatch(setLoading(true));
       dispatch(getDBVideogames());
     }
+    dispatch(setCurrentPage(1));
   };
 
   const handleGenres = (e) => {
     if (e.target.value === "generos") {
       dispatch(setLoading(true));
       dispatch(getVideogames());
+      dispatch(setCurrentPage(1));
     } else {
       dispatch(filterByGenre(e.target.value));
+      dispatch(setCurrentPage(1));
     }
   };
 
