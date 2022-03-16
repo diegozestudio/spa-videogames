@@ -159,4 +159,14 @@ router.get("/videogame/:id", (req, res) => {
   }
 });
 
+router.delete("/deleted/:id", (req, res) => {
+  const { id } = req.params;
+  try {
+    Videogame.findByPk(id).then((r) => r.destroy());
+    res.send(200, "Juego eliminado con éxito");
+  } catch (err) {
+    res.send("entré al catch del get /deleted/:id", err);
+  }
+});
+
 module.exports = router;

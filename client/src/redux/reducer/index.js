@@ -15,6 +15,7 @@ import {
   SET_ERROR,
   SET_AUTOPLAY,
   SET_CORS,
+  DELETE_VG,
 } from "../actions";
 
 const initialState = {
@@ -180,6 +181,8 @@ function rootReducer(state = initialState, action) {
         ...state,
         nav: action.payload,
       };
+    case DELETE_VG:
+      return { ...state };
     default:
       return state;
   }

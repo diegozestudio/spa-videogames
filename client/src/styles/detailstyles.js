@@ -113,3 +113,16 @@ export const DateRating = styled.div`
   display: flex;
   gap: 2rem;
 `;
+
+export const BotonEliminar = styled.div`
+  border: 1px solid #fff;
+  padding: 10px 20px;
+  border-radius: 25px;
+  font-family: "Poppins";
+  &:hover {
+    background-color: #a6000099;
+    color: #fff;
+    cursor: pointer;
+    border: none;
+  }
+`;

@@ -15,6 +15,7 @@ export const SET_NAV = "SET_NAV";
 export const SET_ERROR = "SET_ERROR";
 export const SET_AUTOPLAY = "SET_AUTOPLAY";
 export const SET_CORS = "SET_CORS";
+export const DELETE_VG = "DELETE_VG";
 
 export function getVideogames() {
   return async function (dispatch) {
@@ -133,4 +134,17 @@ export function setAutoplay(payload) {
 
 export function setCors(payload) {
   return { type: SET_CORS, payload };
+}
+
+export function deleteVideogame(id) {
+  return async function (dispatch) {
+    try {
+      await axios.delete(`http://localhost:3001/deleted/${id}`);
+      return dispatch({
+        type: DELETE_VG,
+      });
+    } catch (err) {
+      return dispatch({ type: SET_ERROR, payload: true });
+    }
+  };
 }

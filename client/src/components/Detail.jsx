@@ -1,8 +1,8 @@
 import React from "react";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
-import { getDetail, setLoading } from "../redux/actions";
+import { useHistory, useParams } from "react-router-dom";
+import { deleteVideogame, getDetail, setLoading } from "../redux/actions";
 import {
   BoxShadow,
   ContDetail,
@@ -16,6 +16,7 @@ import {
   ContErrorDetail,
   ListDetail,
   DateRating,
+  BotonEliminar,
 } from "../styles/detailstyles";
 
 export default function Detail() {
@@ -23,11 +24,18 @@ export default function Detail() {
   const dispatch = useDispatch();
   const videogame = useSelector((state) => state.detail);
   const loading = useSelector((state) => state.loading);
+  const history = useHistory();
 
   useEffect(() => {
     dispatch(setLoading(true));
     dispatch(getDetail(id));
   }, [dispatch, id]);
+
+  const handlerDelete = () => {
+    dispatch(deleteVideogame(id));
+    alert("Juego eliminado con éxito");
+    history.push("/home");
+  };
 
   return loading ? (
     <ContErrorDetail>
@@ -60,6 +68,9 @@ export default function Detail() {
             })}
         </ListDetail>
       </LineDetail>
+      {videogame.createdInDB && (
+        <BotonEliminar onClick={handlerDelete}>Eliminar Juego</BotonEliminar>
+      )}
       <LinkDetail to="/home">Volver</LinkDetail>
     </ContDetail>
   );
