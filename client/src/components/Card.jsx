@@ -8,10 +8,9 @@ import {
   ImageCard,
   TitleCard,
   GenresCard,
-  Rating,
 } from "../styles/cardstyles";
 
-export default function Card({ image, name, genres, id, rating }) {
+export default function Card({ image, name, genres, id }) {
   return (
     <CardSt>
       <ContName>
@@ -20,7 +19,6 @@ export default function Card({ image, name, genres, id, rating }) {
       <ImageCard src={image} alt={name} />
       <ContGenres>
         <GenresCard>{genres && genres.join(" - ").toUpperCase()}</GenresCard>
-        <Rating>{rating}</Rating>
       </ContGenres>
       <FondoVermas>
         <LinkVerMas to={`/videogame/${id}`}>Ver detalles</LinkVerMas>
