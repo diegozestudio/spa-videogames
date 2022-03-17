@@ -16,10 +16,14 @@
 - Aprender y practicar el workflow de GIT.
 - Usar y practicar testing.
 
-#### Tecnologías ocupadas:
+### Tecnologías ocupadas:
 
 - React
 - Redux
 - Express
 - Sequelize - Postgres
 - Styled Components - Module CSS
+
+#### Deploy:
+
+- https://spa-videogames-ten.vercel.app/
