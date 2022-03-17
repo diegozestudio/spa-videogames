@@ -39,6 +39,7 @@ function rootReducer(state = initialState, action) {
         allVideogames: action.payload,
         videogames: action.payload,
         loading: false,
+        detail: {},
       };
     case SET_AUTOPLAY:
       return {

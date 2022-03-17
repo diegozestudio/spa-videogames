@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { ContError, SadFace, Reload } from "../styles/errorstyles";
 import sadface from "../assets/sadface.svg";
 import { useDispatch } from "react-redux";
